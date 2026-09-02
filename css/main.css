@@ -912,3 +912,162 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* =========================
+   Геодезические навыки
+   ========================= */
+
+.skills-slider {
+  position: relative;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.skill-slide {
+  position: absolute;
+  width: 300px;
+  height: 380px;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  background: #fff;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.7s ease,
+    opacity 0.7s ease,
+    filter 0.7s ease;
+
+  opacity: 0.45;
+  filter: brightness(0.8);
+}
+
+.skill-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skill-slide__content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 24px;
+
+  color: #fff;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.85)
+  );
+}
+
+.skill-slide__content h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.skill-slide__content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* Центральная карточка */
+
+.skill-slide.is-center {
+  transform: translateX(0) scale(1.12);
+  z-index: 3;
+  opacity: 1;
+  filter: brightness(1);
+}
+
+
+/* Карточка слева */
+
+.skill-slide.is-left {
+  transform: translateX(-330px) scale(0.88);
+  z-index: 2;
+}
+
+
+/* Карточка справа */
+
+.skill-slide.is-right {
+  transform: translateX(330px) scale(0.88);
+  z-index: 2;
+}
+
+
+/* Остальные карточки */
+
+.skill-slide.is-hidden {
+  transform: translateX(0) scale(0.7);
+  opacity: 0;
+  z-index: 1;
+}
+
+
+/* Точки */
+
+.skills-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.skills-slider__dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background: #ccc;
+
+  transition: 0.3s ease;
+}
+
+.skills-slider__dot.is-active {
+  width: 24px;
+  border-radius: 10px;
+  background: #222;
+}
+
+
+/* Мобильная версия */
+
+@media (max-width: 800px) {
+
+  .skills-slider {
+    height: 400px;
+  }
+
+  .skill-slide {
+    width: 250px;
+    height: 330px;
+  }
+
+  .skill-slide.is-left {
+    transform: translateX(-180px) scale(0.8);
+  }
+
+  .skill-slide.is-right {
+    transform: translateX(180px) scale(0.8);
+  }
+
+  .skill-slide.is-center {
+    transform: translateX(0) scale(1);
+  }
+}
+
