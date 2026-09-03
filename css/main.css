@@ -1416,9 +1416,7 @@ h4 {
   position: absolute;
 
   left: 0;
-
   right: 0;
-
   bottom: 0;
 
   padding: 24px;
@@ -1427,9 +1425,14 @@ h4 {
 
   background:
     linear-gradient(
+      to bottom,
       transparent 0%,
-      rgba(20, 31, 19, 0.90) 100%
+      rgba(63, 125, 53, 0.15) 25%,
+      rgba(63, 125, 53, 0.65) 60%,
+      rgba(124, 111, 232, 0.92) 100%
     );
+}
+
 }
 
 .skill-slide__content h3 {
