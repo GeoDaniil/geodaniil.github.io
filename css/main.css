@@ -672,8 +672,19 @@ h4 {
 }
 
 .image-card--small {
-  min-height: 250px;
+  width: 70%;
+  min-height: 0;
+  margin: 24px auto 0;
 }
+
+.image-card--small img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  object-fit: contain;
+}
+
 
 .image-card--vertical {
   min-height: 270px;
