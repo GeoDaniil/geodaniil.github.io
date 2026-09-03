@@ -1,3 +1,5 @@
+console.log('MAIN JS WORKS');
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // =========================
