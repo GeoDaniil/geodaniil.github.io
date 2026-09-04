@@ -1,20 +1,379 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Даниил Сапожков | Главная</title>
-  <meta name="description" content="Профессиональный профиль Даниила Сапожкова: опыт, образование, курсы и ключевые компетенции.">
-  <link rel="stylesheet" href="css/main.css">
-</head>
+  <meta name="description" content="Профессиональный профиль геодезиста Даниила Сапожкова." />
+  <style>
+    /* ---------- ОБЩИЕ СБРОСЫ И ПЕРЕМЕННЫЕ ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    :root {
+      --green-light: #c3e6cb;     /* салатовый фон */
+      --green-main: #2e7d32;      /* тёмно-зелёный для текста */
+      --green-bright: #66bb6a;    /* ярко-зелёный для акцентов */
+      --purple: #9c27b0;          /* фиолетовый */
+      --purple-light: #ce93d8;
+      --white: #ffffff;
+      --gray: #f5f5f5;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: var(--green-light);
+      color: #1a1a1a;
+      line-height: 1.5;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="red" stroke="white" stroke-width="2"/><path d="M16 2 L16 12 M16 20 L16 30 M2 16 L12 16 M20 16 L30 16" stroke="red" stroke-width="4"/><circle cx="16" cy="16" r="4" fill="white"/></svg>') 16 16, auto; /* геодезический крест */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------- ШАПКА ---------- */
+    .site-header {
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green-main);
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--purple);
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav__link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .nav__link:hover {
+      color: var(--white);
+      background: var(--green-bright);
+    }
+
+    .nav__link.active {
+      background: var(--purple);
+      color: var(--white);
+    }
+
+    /* ---------- HERO ---------- */
+    .home-intro {
+      padding: 60px 0 40px;
+      background: var(--white);
+      border-radius: 0 0 40px 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .home-intro__grid {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .home-photo-card {
+      flex: 0 0 260px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(46, 125, 50, 0.25);
+      border: 4px solid var(--green-bright);
+    }
+
+    .home-photo-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .home-summary-card {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .eyebrow {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--purple);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .home-summary-card h1 {
+      font-size: 2.6rem;
+      color: var(--green-main);
+      margin-bottom: 6px;
+    }
+
+    .home-summary-card h1 span {
+      color: var(--purple);
+    }
+
+    .home-summary-meta {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--green-light);
+      padding-bottom: 12px;
+    }
+
+    .home-summary-text {
+      margin-bottom: 14px;
+      color: #333;
+      font-size: 1.05rem;
+    }
+
+    /* ---------- ОБО МНЕ ---------- */
+    .section--about {
+      padding: 60px 0;
+      background: transparent;
+    }
+
+    .section__head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section__kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    .section__title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--green-main);
+    }
+
+    .section__title span {
+      color: var(--purple);
+    }
+
+    .about__text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: #333;
+      line-height: 1.7;
+      background: rgba(255,255,255,0.7);
+      padding: 30px 40px;
+      border-radius: 24px;
+      backdrop-filter: blur(4px);
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--green-bright);
+    }
+
+    .about__text p {
+      margin-bottom: 18px;
+    }
+
+    .about__text strong {
+      color: var(--green-main);
+    }
+
+    /* ---------- СЛАЙДЕР НАВЫКОВ (КАРУСЕЛЬ) ---------- */
+    .section--skills-slider {
+      padding: 60px 0 80px;
+      background: var(--white);
+      border-radius: 40px 40px 0 0;
+      margin-top: 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+      border-radius: 24px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 20px;
+    }
+
+    .carousel-slide h3 {
+      font-size: 1.6rem;
+      color: var(--green-main);
+      margin-bottom: 12px;
+      font-weight: 600;
+      background: rgba(195, 230, 203, 0.5);
+      padding: 6px 20px;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    .carousel-slide__card {
+      width: 100%;
+      max-width: 500px;
+      height: 320px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(46, 125, 50, 0.20);
+      background: var(--gray);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 3px solid var(--green-light);
+      margin: 0 auto;
+    }
+
+    .carousel-slide__card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(156, 39, 176, 0.25);
+      border-color: var(--purple);
+    }
+
+    .carousel-slide__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-slide p {
+      font-size: 1.1rem;
+      margin: 16px 0 0;
+      color: #444;
+      background: rgba(206, 147, 216, 0.15);
+      padding: 8px 24px;
+      border-radius: 40px;
+      display: inline-block;
+      border: 1px solid var(--purple-light);
+    }
+
+    /* Точки (необязательно, но добавим для красоты) */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green-light);
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: var(--purple);
+      transform: scale(1.3);
+      box-shadow: 0 0 12px var(--purple-light);
+    }
+
+    /* ---------- ФУТЕР ---------- */
+    .footer {
+      background: var(--green-main);
+      padding: 24px 0;
+      color: var(--white);
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .footer__inner a {
+      color: var(--green-light);
+      text-decoration: none;
+    }
+
+    .footer__inner a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- АДАПТИВ ---------- */
+    @media (max-width: 768px) {
+      .home-intro__grid {
+        flex-direction: column;
+        text-align: center;
+      }
+      .home-photo-card {
+        flex: 0 0 auto;
+        width: 200px;
+      }
+      .section__title {
+        font-size: 1.8rem;
+      }
+      .carousel-slide__card {
+        height: 220px;
+        max-width: 100%;
+      }
+      .carousel-slide h3 {
+        font-size: 1.3rem;
+      }
+      .carousel-slide p {
+        font-size: 1rem;
+      }
+      .about__text {
+        padding: 20px;
+      }
+      .footer__inner {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
 <body>
+
+  <!-- ШАПКА -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">Даниил Сапожков</a>
-
+      <a class="brand" href="index.html">Даниил <span>Сапожков</span></a>
       <nav class="nav__links" aria-label="Основная навигация">
-        <a class="nav__link" href="index.html">Главная</a>
+        <a class="nav__link active" href="index.html">Главная</a>
         <a class="nav__link" href="skills.html">Навыки</a>
         <a class="nav__link" href="contact.html">Контакты</a>
       </nav>
@@ -22,210 +381,250 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="home-intro">
       <div class="container home-intro__grid">
         <div class="home-photo-card">
-          <img src="images/photo_3on4.jpg" alt="Официальное фото Даниила Сапожкова">
+          <img src="images/photo_3on4.jpg" alt="Фото Даниила Сапожкова">
         </div>
-
         <div class="home-summary-card">
-          <p class="eyebrow">Главная</p>
-          <h1>Даниил Сапожков</h1>
-          <p class="home-summary-meta">Дата рождения: 26.02.2002</p>
-
+          <p class="eyebrow">Геодезист</p>
+          <h1>Даниил <span>Сапожков</span></h1>
+          <p class="home-summary-meta">3 года в строительной геодезии</p>
           <p class="home-summary-text">
-            Быстро адаптируюсь к новым условиям, обладаю аналитическим мышлением,
-            умею работать с большими объёмами информации и сохранять эффективность
-            в режиме многозадачности.
+            Специализируюсь на полевых и камеральных работах, контроле геометрии конструкций,
+            разбивочных работах и подготовке исполнительной документации.
           </p>
-
           <p class="home-summary-text">
-            Имею опыт в ИТ, информационной безопасности, образовательных проектах,
-            а также административный опыт, опыт клиентского сервиса и управления линейными сотрудниками
-            в розничной торговле.
+            Работаю на премиум‑объектах в Москве (ЖК на ЗИЛ, Гагаринский и другие).
           </p>
         </div>
       </div>
     </section>
-<section class="section section--skills-slider">
-  <div class="container">
-    <div class="section__head section__head--center">
-      <p class="section__kicker">Геодезия</p>
-      <h2 class="section__title">Основные профессиональные навыки</h2>
-    </div>
 
-    <div class="skills-slider" data-skills-slider>
-
-      <div class="skill-slide">
-        <h3>Проектная документация</h3>
-        <div class="skill-slide__card">
-          <img src="images/chertezh.jpg" alt="Работа с проектной документацией">
-        </div>
-        <p>Чтение проекта и исполнительной документации</p>
-      </div>
-
-      <div class="skill-slide">
-        <h3>Разбивочные работы</h3>
-        <div class="skill-slide__card">
-          <img src="images/razbiv.jpg" alt="Выполнение разбивочных работ">
-        </div>
-        <p>Подготовка и вынос проектных осей, точек и отметок</p>
-      </div>
-
-      <div class="skill-slide">
-        <h3>Геодезическая съёмка</h3>
-        <div class="skill-slide__card">
-          <img src="images/semka.jpg" alt="Геодезическая съёмка">
-        </div>
-        <p>Полевые измерения и контроль геометрии конструкций</p>
-      </div>
-
-      <div class="skill-slide">
-        <h3>Обработка съёмки</h3>
-        <div class="skill-slide__card">
-          <img src="images/chertezh.jpg" alt="Обработка результатов съёмки">
-        </div>
-        <p>Обработка полевых данных и подготовка результатов</p>
-      </div>
-
-      <div class="skill-slide">
-        <h3>Фасады и витражи</h3>
-        <div class="skill-slide__card">
-          <img src="images/pik.jpg" alt="Съёмка фасада и витражей">
-        </div>
-        <p>Съёмка, обработка и контроль геометрии конструкций</p>
-      </div>
-
-      <div class="skill-slide">
-        <h3>AutoCAD</h3>
-        <div class="skill-slide__card">
-          <img src="images/autocad.png" alt="Работа в AutoCAD">
-        </div>
-        <p>Построение, корректировка и оформление чертежей</p>
-      </div>
-
-    </div>
-
-    <div class="skills-slider__dots" data-skills-dots></div>
-  </div>
-</section>
-    <section class="section section--experience-preview">
+    <!-- ОБО МНЕ -->
+    <section class="section section--about">
       <div class="container">
-        <div class="section__head section__head--center">
-          <p class="section__kicker">Картиночки</p>
-          <h2 class="section__title">Профессиональный опыт</h2>
+        <div class="section__head">
+          <p class="section__kicker">Мой путь</p>
+          <h2 class="section__title">От помощника до <span>самостоятельного</span> геодезиста</h2>
         </div>
-
-        <div class="experience-preview-grid">
-          <article class="info-card">
-            <h3>ООО «Кросстех Солюшнс Групп»</h3>
-            <p>
-              <strong>Июнь 2025 — настоящее время</strong><br>
-              Младший специалист группы внешнего обучения в образовательных учреждениях.
-            </p>
-            <p>
-              Работаю с образовательными проектами в области ИТ и информационной безопасности:
-              разрабатываю практические материалы, сопровождаю студентов, участвую в организации хакатонов,
-              работаю с ИБ-продуктами и техническими стендами.
-            </p>
-          </article>
-
-          <article class="info-card">
-            <h3>Спортмастер - Urban Vibes</h3>
-            <p>
-              <strong>Декабрь 2023 — май 2025, 1 год 6 месяцев</strong><br>
-              Продавец, система личной мотивации.
-            </p>
-            <p>
-              Работала с продажами спортивной обуви, консультировала покупателей, изучала технологии товара,
-              обслуживала клиентов, работала на кассе, участвовала в переоценках, инвентаризациях,
-              презентации товара и задачах по мерчендайзингу.
-            </p>
-          </article>
-
-          <article class="info-card">
-            <h3>Melon Fashion Group</h3>
-            <p>
-              <strong>2021 — 2023</strong><br>
-              Продавец, старший продавец, администратор 1-й категории, заместитель директора магазина.
-            </p>
-            <p>
-              Прошла путь от линейной позиции до административной роли. Получила опыт организации смен,
-              отчётности, работы с 1С, инвентаризаций, переоценок, визуального мерчандайзинга
-              и взаимодействия с руководителями.
-            </p>
-          </article>
+        <div class="about__text">
+          <p>
+            Начал карьеру в компании <strong>«Накор‑К»</strong> в должности помощника геодезиста в 2023 году.
+            За 3 года освоил все этапы геодезического сопровождения строительства: от приёмки геодезической основы
+            до сдачи исполнительных схем заказчику.
+          </p>
+          <p>
+            Самостоятельно веду объекты в Москве – жилые комплексы на территории ЗИЛ, Гагаринский и другие.
+            Работаю с высотными домами, сложными фасадами и витражами, требующими высокой точности.
+          </p>
+          <p>
+            В работе стараюсь быть внимательным и осторожным, соблюдаю требования нормативной документации
+            (ГОСТы, СП) там, где это необходимо для обеспечения качества измерений и надёжности результатов.
+            Постоянно повышаю квалификацию, слежу за обновлениями в геодезическом законодательстве.
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="section section--education">
+    <!-- СЛАЙДЕР НАВЫКОВ (карусель) -->
+    <section class="section section--skills-slider">
       <div class="container">
-        <div class="section__head section__head--center">
-          <p class="section__kicker">Образование</p>
-          <h2 class="section__title">Образование и курсы</h2>
+        <div class="section__head">
+          <p class="section__kicker">Геодезия</p>
+          <h2 class="section__title">Основные <span>профессиональные</span> навыки</h2>
         </div>
 
-        <div class="education-grid">
-          <article class="info-card">
-            <h3>Бакалавриат</h3>
-            <p>
-              Российский государственный гуманитарный университет (РГГУ).<br>
-              Направление: <strong>Информационная безопасность. Организация и технологии защиты информации.</strong><br>
-              Годы обучения: <strong>2021–2025</strong>.
-            </p>
-          </article>
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="carouselTrack">
 
-          <article class="info-card">
-            <h3>Магистратура</h3>
-            <p>
-              <strong>Российский государственный гуманитарный университет (РГГУ)</strong>.<br>
-              Направление: <strong>Прикладная информатика</strong>.<br>
-              Годы обучения: <strong>2025 — настоящее время</strong>.
-            </p>
-          </article>
+            <!-- Слайд 1 -->
+            <div class="carousel-slide">
+              <h3>Проектная документация</h3>
+              <div class="carousel-slide__card">
+                <img src="images/chertezh.jpg" alt="Проектная документация">
+              </div>
+              <p>Чтение проекта и исполнительной документации</p>
+            </div>
 
-          <article class="image-card image-card--small">
-            <img src="images/bakalavr.jpg" alt="Фото с дипломом">
-          </article>
+            <!-- Слайд 2 -->
+            <div class="carousel-slide">
+              <h3>Разбивочные работы</h3>
+              <div class="carousel-slide__card">
+                <img src="images/razbiv.jpg" alt="Разбивочные работы">
+              </div>
+              <p>Подготовка и вынос проектных осей, точек и отметок</p>
+            </div>
 
-          <article class="info-card">
-            <h3>Дополнительная подготовка</h3>
-            <ul class="clean-list">
-              <li>Углублённый курс по ручному тестированию от НИЦ КТСГ.</li>
-              <li>Курс Cisco Packet Tracer на базе РГГУ.</li>
-              <li>Победитель КроссХак 4.0 в составе команды.</li>
-            </ul>
-          </article>
+            <!-- Слайд 3 -->
+            <div class="carousel-slide">
+              <h3>Геодезическая съёмка</h3>
+              <div class="carousel-slide__card">
+                <img src="images/semka.jpg" alt="Геодезическая съёмка">
+              </div>
+              <p>Полевые измерения и контроль геометрии</p>
+            </div>
 
-          <article class="image-card image-card--vertical">
-            <img src="images/VISTUPLENIE.jpg" alt="Фото выступления или рабочей деятельности">
-          </article>
+            <!-- Слайд 4 -->
+            <div class="carousel-slide">
+              <h3>Обработка съёмки</h3>
+              <div class="carousel-slide__card">
+                <img src="images/chertezh.jpg" alt="Обработка съёмки">
+              </div>
+              <p>Обработка полевых данных и подготовка результатов</p>
+            </div>
 
-          <article class="image-card image-card--square">
-            <img src="images/4_0POBEDA.jpg" alt="Фото образовательного процесса">
-          </article>
+            <!-- Слайд 5 -->
+            <div class="carousel-slide">
+              <h3>Фасады и витражи</h3>
+              <div class="carousel-slide__card">
+                <img src="images/pik.jpg" alt="Фасады и витражи">
+              </div>
+              <p>Съёмка, обработка и контроль геометрии конструкций</p>
+            </div>
+
+            <!-- Слайд 6 -->
+            <div class="carousel-slide">
+              <h3>AutoCAD</h3>
+              <div class="carousel-slide__card">
+                <img src="images/autocad.png" alt="AutoCAD">
+              </div>
+              <p>Построение, корректировка и оформление чертежей</p>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="container section-note">
-        <p>
-          Подробная информация о профессиональных навыках, инструментах и опыте работы представлена
-          в разделе <a href="skills.html">«Навыки»</a>.
-        </p>
+        <!-- Точки (индикаторы) -->
+        <div class="carousel-dots" id="carouselDots"></div>
       </div>
     </section>
   </main>
 
+  <!-- ФУТЕР -->
   <footer class="footer">
     <div class="container footer__inner">
-      <span>© <span data-current-year></span> Даниил Сапожков</span>
-      <span>Главная</span>
+      <span>© 2026 Даниил Сапожков</span>
+      <span>Геодезист</span>
     </div>
   </footer>
 
-  <script src="scripts/main.js"></script>
+  <!-- ПОДКЛЮЧАЕМ JS (отдельным файлом или здесь) -->
+  <script>
+    // === БЕСКОНЕЧНАЯ КАРУСЕЛЬ ===
+    (function() {
+      const track = document.getElementById('carouselTrack');
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dotsContainer = document.getElementById('carouselDots');
+
+      if (!track || slides.length === 0) return;
+
+      const total = slides.length;
+      let currentIndex = 0;
+      let autoPlayInterval = null;
+      const intervalTime = 3000; // 3 секунды на слайд
+
+      // Клонируем первый слайд в конец для бесконечного эффекта
+      const firstClone = slides[0].cloneNode(true);
+      track.appendChild(firstClone);
+
+      // Обновляем коллекцию слайдов (теперь их total+1)
+      const allSlides = track.querySelectorAll('.carousel-slide');
+      const totalCloned = allSlides.length; // = total + 1
+
+      // Создаём точки (только для оригинальных слайдов)
+      const dots = [];
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-index', i);
+        dot.addEventListener('click', function() {
+          const idx = parseInt(this.getAttribute('data-index'));
+          goToSlide(idx);
+          resetAutoPlay();
+        });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      }
+
+      function goToSlide(index) {
+        // Если индекс выходит за пределы оригинальных, корректируем
+        if (index >= total) index = 0;
+        if (index < 0) index = total - 1;
+        currentIndex = index;
+        // Прокручиваем на соответствующий слайд (с учётом клона)
+        const slideWidth = allSlides[0].offsetWidth;
+        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        updateDots(currentIndex);
+      }
+
+      function updateDots(index) {
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+
+      function nextSlide() {
+        if (currentIndex >= total - 1) {
+          // Если дошли до последнего, переключаем на клон (первый) без анимации, потом на первый
+          const slideWidth = allSlides[0].offsetWidth;
+          track.style.transition = 'none';
+          track.style.transform = `translateX(-${(total) * slideWidth}px)`;
+          currentIndex = 0;
+          // Принудительно обновляем позицию после reflow
+          requestAnimationFrame(() => {
+            track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            track.style.transform = `translateX(0px)`;
+            updateDots(0);
+          });
+        } else {
+          goToSlide(currentIndex + 1);
+        }
+      }
+
+      function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, intervalTime);
+      }
+
+      function stopAutoPlay() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+      }
+
+      function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+      }
+
+      // Остановка при наведении на обёртку
+      const wrapper = document.querySelector('.carousel-wrapper');
+      wrapper.addEventListener('mouseenter', stopAutoPlay);
+      wrapper.addEventListener('mouseleave', startAutoPlay);
+
+      // Инициализация
+      // Устанавливаем начальную позицию (первый слайд)
+      track.style.transform = 'translateX(0)';
+      startAutoPlay();
+
+      // Обновление при изменении размера окна (корректировка позиции)
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const slideWidth = allSlides[0].offsetWidth;
+          track.style.transition = 'none';
+          track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+          requestAnimationFrame(() => {
+            track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          });
+        }, 200);
+      });
+    })();
+  </script>
 </body>
 </html>
