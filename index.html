@@ -14,7 +14,7 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(145deg, #f0f7f4, #e0f0ec);
+      background: #f0f7f4;
       color: #1e2b2a;
       line-height: 1.6;
       min-height: 100vh;
@@ -29,7 +29,7 @@
 
     /* ----- Шапка ----- */
     .site-header {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
       padding: 16px 0;
       position: sticky;
@@ -96,9 +96,29 @@
       display: none;
     }
 
-    /* ----- Hero ----- */
+    /* ----- Hero (верхняя часть) ----- */
     .home-intro {
       padding: 60px 0 40px;
+      background: linear-gradient(145deg, #ffffff, #f0f7f4);
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    /* Декоративный разделитель после Hero */
+    .home-intro::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 600px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #4db6ac, #7e57c2, transparent);
+      border-radius: 4px;
+      opacity: 0.3;
     }
 
     .home-intro__grid {
@@ -114,12 +134,13 @@
       overflow: hidden;
       box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
       border: 4px solid rgba(255, 255, 255, 0.6);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s;
     }
 
     .home-photo-card:hover {
       transform: translateY(-8px) scale(1.01);
       box-shadow: 0 30px 50px -12px rgba(78, 205, 196, 0.3);
+      border-color: #4db6ac;
     }
 
     .home-photo-card img {
@@ -168,9 +189,29 @@
       opacity: 0.9;
     }
 
-    /* ----- ABOUT (текст и картинки отдельными плашками) ----- */
+    /* ----- About (Мой путь) ----- */
     .section--about {
       padding: 60px 0;
+      background: linear-gradient(145deg, #eaf5f0, #dcebe6);
+      border-radius: 40px 40px 0 0;
+      margin-top: 10px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
+      position: relative;
+    }
+
+    /* Разделитель после About */
+    .section--about::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 500px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #7e57c2, #4db6ac, transparent);
+      border-radius: 4px;
+      opacity: 0.25;
     }
 
     .section__head {
@@ -193,13 +234,6 @@
       letter-spacing: -0.5px;
     }
 
-    .section__title span {
-      background: linear-gradient(135deg, #4db6ac, #7e57c2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
     .about-grid {
       display: flex;
       flex-direction: column;
@@ -210,31 +244,32 @@
       display: flex;
       align-items: center;
       gap: 60px;
-      /* flex-wrap убран */
     }
 
     .about-row--reverse {
       flex-direction: row-reverse;
     }
 
-    /* Текстовая плашка */
     .about-text-card {
       flex: 1;
       min-width: 280px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(8px);
       padding: 30px 40px;
       border-radius: 32px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.8);
-      transition: box-shadow 0.3s;
+      transition: all 0.3s ease;
       font-size: 1.05rem;
       color: #1e2b2a;
       line-height: 1.7;
     }
 
     .about-text-card:hover {
-      box-shadow: 0 20px 50px rgba(78, 205, 196, 0.08);
+      box-shadow: 0 20px 50px rgba(78, 205, 196, 0.15);
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.85);
+      border-color: #4db6ac;
     }
 
     .about-text-card p {
@@ -250,16 +285,17 @@
       font-weight: 600;
     }
 
-    /* Картинка — просто скруглённые углы, без фона и тени */
     .about-image {
-      flex: 0 0 340px; /* увеличен размер */
+      flex: 0 0 340px;
       border-radius: 24px;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     }
 
     .about-image:hover {
-      transform: scale(1.02);
+      transform: scale(1.02) translateY(-4px);
+      box-shadow: 0 16px 40px rgba(78, 205, 196, 0.15);
     }
 
     .about-image img {
@@ -268,10 +304,14 @@
       display: block;
     }
 
-    /* ----- Карусель-лента ----- */
+    /* ----- Карусель-лента (направления работ) ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
       overflow: hidden;
+      background: linear-gradient(145deg, #ffffff, #f5faf8);
+      border-radius: 40px 40px 0 0;
+      margin-top: 10px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
     }
 
     .carousel-wrapper {
@@ -314,12 +354,18 @@
       font-weight: 600;
       margin-bottom: 10px;
       color: #1e2b2a;
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(4px);
       padding: 4px 16px;
       border-radius: 40px;
       border: 1px solid rgba(78, 205, 196, 0.1);
       white-space: nowrap;
+      transition: all 0.3s;
+    }
+
+    .carousel-slide.active h3 {
+      background: rgba(78, 205, 196, 0.15);
+      border-color: #4db6ac;
     }
 
     .carousel-slide__card {
@@ -355,6 +401,12 @@
       border-radius: 40px;
       border: 1px solid rgba(126, 87, 194, 0.08);
       white-space: nowrap;
+      transition: all 0.3s;
+    }
+
+    .carousel-slide.active p {
+      background: rgba(126, 87, 194, 0.1);
+      border-color: #7e57c2;
     }
 
     /* ----- Footer ----- */
@@ -419,6 +471,10 @@
         font-size: 0.8rem;
         padding: 2px 12px;
       }
+      .home-intro::after,
+      .section--about::after {
+        width: 60%;
+      }
     }
   </style>
 </head>
@@ -437,7 +493,7 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO (верхняя часть) -->
     <section class="home-intro">
       <div class="container home-intro__grid">
         <div class="home-photo-card">
@@ -458,16 +514,15 @@
       </div>
     </section>
 
-    <!-- ABOUT (текст и картинки отдельными плашками) -->
+    <!-- ABOUT (Мой путь) -->
     <section class="section section--about">
       <div class="container">
         <div class="section__head">
           <p class="section__kicker">Мой путь</p>
-          <h2 class="section__title">От помощника до <span>самостоятельного</span> геодезиста</h2>
+          <h2 class="section__title">От помощника до самостоятельного геодезиста</h2>
         </div>
         <div class="about-grid">
 
-          <!-- Первая строка: текст (слева) + картинка (справа) -->
           <div class="about-row">
             <div class="about-text-card">
               <p>
@@ -481,7 +536,6 @@
             </div>
           </div>
 
-          <!-- Вторая строка: картинка (слева) + текст (справа) -->
           <div class="about-row about-row--reverse">
             <div class="about-image">
               <img src="images/employee-working-promotion.jpg" alt="Работа на объекте">
@@ -503,12 +557,12 @@
       </div>
     </section>
 
-    <!-- CAROUSEL -->
+    <!-- CAROUSEL (направления работ) -->
     <section class="section section--skills-slider">
       <div class="container">
         <div class="section__head">
           <p class="section__kicker">Геодезия</p>
-          <h2 class="section__title">Основные <span>профессиональные</span> навыки</h2>
+          <h2 class="section__title">Основные профессиональные навыки</h2>
         </div>
 
         <div class="carousel-wrapper">
