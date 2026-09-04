@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <style>
     /* =========================
-       КУРСОР-ПРИЦЕЛ + ЯРКИЙ ФОН СТРАНИЦЫ
+       КУРСОР-ПРИЦЕЛ + ФОН ВСЕЙ СТРАНИЦЫ (из старого CSS)
        ========================= */
     body {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" fill="%23d32f2f" stroke="white" stroke-width="2"/><path d="M14 2 L14 10 M14 18 L14 26 M2 14 L10 14 M18 14 L26 14" stroke="%23d32f2f" stroke-width="3"/><circle cx="14" cy="14" r="3" fill="white"/></svg>') 14 14, auto;
@@ -16,20 +16,25 @@
       background:
         radial-gradient(
           circle at 8% 5%,
-          rgba(168, 224, 99, 0.30),
+          rgba(168, 224, 99, 0.20),
           transparent 30%
         ),
         radial-gradient(
           circle at 92% 18%,
-          rgba(114, 201, 74, 0.20),
+          rgba(114, 201, 74, 0.10),
           transparent 30%
         ),
         radial-gradient(
           circle at 50% 100%,
-          rgba(168, 224, 99, 0.15),
+          rgba(168, 224, 99, 0.09),
           transparent 35%
         ),
-        #d4e9e0; /* яркий салатовый фон */
+        linear-gradient(
+          180deg,
+          #FFFFFF 0%,
+          #F8FCF5 48%,
+          #FFFFFF 100%
+        );
     }
 
     /* =========================
@@ -128,7 +133,7 @@
     /* ----- About (Мой путь) ----- */
     .section--about {
       padding: 60px 0;
-      background: transparent;
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
@@ -219,7 +224,7 @@
     /* ----- Education (Образование) ----- */
     .section--education {
       padding: 60px 0;
-      background: transparent;
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
@@ -280,7 +285,7 @@
     /* ----- Skills / Carousel (Направления работ) ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
-      background: transparent;
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
@@ -337,6 +342,7 @@
       z-index: 2;
     }
 
+    /* Заголовок — просто чёрный текст, без плашки */
     .carousel-slide h3 {
       font-size: 1.2rem;
       font-weight: 700;
@@ -345,6 +351,7 @@
       letter-spacing: -0.02em;
     }
 
+    /* Картинка — градиентная рамка и тень */
     .carousel-slide__card {
       width: 100%;
       height: 160px;
@@ -395,6 +402,7 @@
       transform: scale(1.04);
     }
 
+    /* Описание — просто чёрный текст, без плашки */
     .carousel-slide p {
       font-size: 0.9rem;
       margin-top: 14px;
@@ -403,6 +411,7 @@
       letter-spacing: -0.01em;
     }
 
+    /* Hover-эффекты — только для активного слайда, без фона */
     .carousel-slide.active:hover .carousel-slide__card {
       box-shadow: 0 20px 48px rgba(63, 125, 53, 0.25);
     }
