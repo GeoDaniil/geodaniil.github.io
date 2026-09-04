@@ -4,106 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Даниил Сапожков | Главная</title>
+  <meta name="description" content="Профессиональный профиль геодезиста Даниила Сапожкова." />
+  <link rel="stylesheet" href="css/main.css" />
   <style>
-    /* ----- Сброс и шрифты ----- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* =========================
+       ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
+       (поддерживают основной CSS)
+       ========================= */
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #d4e9e0;  /* яркий салатовый фон */
-      color: #1e2b2a;
-      line-height: 1.6;
-      min-height: 100vh;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" fill="%23d32f2f" stroke="white" stroke-width="2"/><path d="M14 2 L14 10 M14 18 L14 26 M2 14 L10 14 M18 14 L26 14" stroke="%23d32f2f" stroke-width="3"/><circle cx="14" cy="14" r="3" fill="white"/></svg>') 14 14, auto;
-    }
-
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 30px;
-    }
-
-    /* ----- Шапка ----- */
-    .site-header {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      padding: 16px 0;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 2px solid #80cbc4;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-decoration: none;
-      background: linear-gradient(135deg, #26a69a, #7e57c2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-
-    .nav__links {
-      display: flex;
-      gap: 32px;
-    }
-
-    .nav__link {
-      text-decoration: none;
-      color: #1e3d3a;
-      font-weight: 500;
-      padding: 6px 16px;
-      border-radius: 40px;
-      transition: all 0.25s;
-      position: relative;
-    }
-
-    .nav__link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #26a69a, #7e57c2);
-      transition: all 0.3s;
-      transform: translateX(-50%);
-    }
-
-    .nav__link:hover::after {
-      width: 60%;
-    }
-
-    .nav__link.active {
-      background: linear-gradient(135deg, #26a69a, #7e57c2);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(38, 166, 154, 0.4);
-    }
-
-    .nav__link.active::after {
-      display: none;
-    }
-
-    /* ----- Hero (верхняя часть) ----- */
+    /* ----- Hero ----- */
     .home-intro {
-      padding: 60px 0 40px;
-      background: linear-gradient(145deg, #b2dfdb, #a5d6c7);
+      padding: 44px 0 28px;
+      background: var(--white);
       border-radius: 0 0 40px 40px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow);
       position: relative;
-      margin-bottom: 20px;
     }
 
     .home-intro::after {
@@ -114,84 +29,82 @@
       transform: translateX(-50%);
       width: 80%;
       max-width: 600px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #26a69a, #7e57c2, transparent);
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-extra), transparent);
       border-radius: 4px;
-      opacity: 0.5;
+      opacity: 0.35;
     }
 
     .home-intro__grid {
-      display: flex;
-      gap: 50px;
-      align-items: center;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: stretch;
     }
 
     .home-photo-card {
-      flex: 0 0 260px;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
-      border: 4px solid rgba(255, 255, 255, 0.7);
-      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: flex;
+      align-items: stretch;
+      background: linear-gradient(145deg, #FFFFFF, var(--green-light));
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.3s;
     }
 
     .home-photo-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 30px 50px -12px rgba(38, 166, 154, 0.4);
-      border-color: #26a69a;
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+      transform: translateY(-4px);
     }
 
     .home-photo-card img {
-      width: 100%;
-      height: auto;
       display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      border-radius: 18px;
     }
 
     .home-summary-card {
-      flex: 1;
-      min-width: 280px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(145deg, rgba(255,255,255,0.98), var(--green-pale));
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
     }
 
-    .eyebrow {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: #7e57c2;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .home-summary-card h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #1e3d3a, #26a69a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .home-summary-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
     }
 
     .home-summary-meta {
-      font-size: 1.1rem;
-      color: #2c5a55;
-      margin-bottom: 20px;
-      border-bottom: 2px solid rgba(38, 166, 154, 0.3);
-      padding-bottom: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 10px;
+      margin-bottom: 18px;
     }
 
     .home-summary-text {
-      font-size: 1.05rem;
-      color: #1e3d3a;
-      margin-bottom: 14px;
-      opacity: 0.9;
+      max-width: 780px;
+      color: var(--text);
+      font-size: 16px;
     }
 
     /* ----- About (Мой путь) ----- */
     .section--about {
       padding: 60px 0;
-      background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+      background: linear-gradient(145deg, var(--green-light), var(--accent-soft));
       border-radius: 40px 40px 0 0;
       margin-top: 10px;
       box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
@@ -206,30 +119,10 @@
       transform: translateX(-50%);
       width: 70%;
       max-width: 500px;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, #7e57c2, #26a69a, transparent);
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-extra), var(--accent), transparent);
       border-radius: 4px;
-      opacity: 0.4;
-    }
-
-    .section__head {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section__kicker {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: #7e57c2;
-      font-weight: 600;
-    }
-
-    .section__title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #1e2b2a;
-      letter-spacing: -0.5px;
+      opacity: 0.3;
     }
 
     .about-grid {
@@ -251,23 +144,23 @@
     .about-text-card {
       flex: 1;
       min-width: 280px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(8px);
       padding: 30px 40px;
-      border-radius: 32px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
       border: 1px solid rgba(255, 255, 255, 0.9);
       transition: all 0.3s ease;
       font-size: 1.05rem;
-      color: #1e2b2a;
+      color: var(--text);
       line-height: 1.7;
     }
 
     .about-text-card:hover {
-      box-shadow: 0 20px 50px rgba(38, 166, 154, 0.2);
+      box-shadow: var(--shadow-hover);
       transform: translateY(-4px);
       background: rgba(255, 255, 255, 0.95);
-      border-color: #26a69a;
+      border-color: var(--accent);
     }
 
     .about-text-card p {
@@ -279,7 +172,7 @@
     }
 
     .about-text-card strong {
-      color: #26a69a;
+      color: var(--accent-dark);
       font-weight: 600;
     }
 
@@ -293,7 +186,7 @@
 
     .about-image:hover {
       transform: scale(1.02) translateY(-4px);
-      box-shadow: 0 16px 40px rgba(38, 166, 154, 0.2);
+      box-shadow: 0 16px 40px rgba(63, 125, 53, 0.15);
     }
 
     .about-image img {
@@ -302,11 +195,11 @@
       display: block;
     }
 
-    /* ----- Карусель-лента (направления работ) ----- */
+    /* ----- Карусель-лента ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
       overflow: hidden;
-      background: linear-gradient(145deg, #b2dfdb, #80cbc4);
+      background: var(--white);
       border-radius: 40px 40px 0 0;
       margin-top: 10px;
       box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
@@ -351,19 +244,19 @@
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 10px;
-      color: #1e2b2a;
+      color: var(--black);
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(4px);
       padding: 4px 16px;
       border-radius: 40px;
-      border: 1px solid rgba(38, 166, 154, 0.2);
+      border: 1px solid rgba(168, 224, 99, 0.2);
       white-space: nowrap;
       transition: all 0.3s;
     }
 
     .carousel-slide.active h3 {
-      background: rgba(38, 166, 154, 0.2);
-      border-color: #26a69a;
+      background: var(--accent-soft);
+      border-color: var(--accent);
     }
 
     .carousel-slide__card {
@@ -372,14 +265,14 @@
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      background: #f5f9f8;
+      background: var(--green-light);
       border: 2px solid rgba(255, 255, 255, 0.6);
       transition: all 0.4s ease;
     }
 
     .carousel-slide.active .carousel-slide__card {
-      box-shadow: 0 16px 40px rgba(38, 166, 154, 0.3);
-      border-color: #26a69a;
+      box-shadow: 0 16px 40px rgba(63, 125, 53, 0.2);
+      border-color: var(--accent);
     }
 
     .carousel-slide__card img {
@@ -392,50 +285,42 @@
     .carousel-slide p {
       font-size: 0.9rem;
       margin-top: 10px;
-      color: #1e3d3a;
+      color: var(--muted);
       background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(4px);
       padding: 4px 16px;
       border-radius: 40px;
-      border: 1px solid rgba(126, 87, 194, 0.15);
+      border: 1px solid rgba(124, 111, 232, 0.1);
       white-space: nowrap;
       transition: all 0.3s;
     }
 
     .carousel-slide.active p {
-      background: rgba(126, 87, 194, 0.15);
-      border-color: #7e57c2;
-    }
-
-    /* ----- Footer ----- */
-    .footer {
-      background: linear-gradient(135deg, #1e3d3a, #2c5a55);
-      padding: 32px 0;
-      color: rgba(255, 255, 255, 0.7);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer__inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-    }
-
-    .footer__inner span:last-child {
-      color: #80cbc4;
-      font-weight: 500;
+      background: var(--accent-extra-soft);
+      border-color: var(--accent-extra);
     }
 
     /* ----- Адаптив ----- */
-    @media (max-width: 768px) {
+    @media (max-width: 980px) {
       .home-intro__grid {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         text-align: center;
       }
       .home-photo-card {
-        flex: 0 0 auto;
-        width: 200px;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .home-photo-card img {
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .home-photo-card {
+        max-width: 200px;
+      }
+      .home-summary-card {
+        padding: 24px 20px;
       }
       .home-summary-card h1 {
         font-size: 2.2rem;
@@ -483,7 +368,7 @@
     <div class="container nav">
       <a class="brand" href="index.html">Даниил Сапожков</a>
       <nav class="nav__links">
-        <a class="nav__link active" href="index.html">Главная</a>
+        <a class="nav__link is-active" href="index.html">Главная</a>
         <a class="nav__link" href="skills.html">Навыки</a>
         <a class="nav__link" href="contact.html">Контакты</a>
       </nav>
@@ -491,14 +376,14 @@
   </header>
 
   <main>
-    <!-- HERO (верхняя часть) -->
+    <!-- HERO -->
     <section class="home-intro">
       <div class="container home-intro__grid">
         <div class="home-photo-card">
           <img src="images/ph.jpg" alt="Даниил Сапожков">
         </div>
         <div class="home-summary-card">
-          <p class="eyebrow">Геодезист</p>
+          <span class="eyebrow">Геодезист</span>
           <h1>Даниил Сапожков</h1>
           <p class="home-summary-meta">3 года в строительной геодезии</p>
           <p class="home-summary-text">
@@ -516,7 +401,7 @@
     <section class="section section--about">
       <div class="container">
         <div class="section__head">
-          <p class="section__kicker">Мой путь</p>
+          <span class="section__kicker">Мой путь</span>
           <h2 class="section__title">От помощника до самостоятельного геодезиста</h2>
         </div>
         <div class="about-grid">
@@ -555,11 +440,11 @@
       </div>
     </section>
 
-    <!-- CAROUSEL (направления работ) -->
+    <!-- CAROUSEL (навыки) -->
     <section class="section section--skills-slider">
       <div class="container">
         <div class="section__head">
-          <p class="section__kicker">Геодезия</p>
+          <span class="section__kicker">Геодезия</span>
           <h2 class="section__title">Основные профессиональные навыки</h2>
         </div>
 
