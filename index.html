@@ -210,7 +210,7 @@
       display: flex;
       align-items: center;
       gap: 60px;
-      flex-wrap: wrap;
+      /* flex-wrap убран */
     }
 
     .about-row--reverse {
@@ -252,7 +252,7 @@
 
     /* Картинка — просто скруглённые углы, без фона и тени */
     .about-image {
-      flex: 0 0 320px;
+      flex: 0 0 340px; /* увеличен размер */
       border-radius: 24px;
       overflow: hidden;
       transition: transform 0.3s ease;
@@ -268,7 +268,7 @@
       display: block;
     }
 
-    /* ----- Карусель-лента (все карточки видны, движутся непрерывно) ----- */
+    /* ----- Карусель-лента ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
       overflow: hidden;
@@ -503,7 +503,7 @@
       </div>
     </section>
 
-    <!-- CAROUSEL (все карточки видны, движутся непрерывно) -->
+    <!-- CAROUSEL -->
     <section class="section section--skills-slider">
       <div class="container">
         <div class="section__head">
@@ -513,7 +513,7 @@
 
         <div class="carousel-wrapper">
           <div class="carousel-track" id="carouselTrack">
-            <!-- Оригинальные 6 карточек -->
+            <!-- 6 оригинальных -->
             <div class="carousel-slide" data-index="0">
               <h3>Проектная документация</h3>
               <div class="carousel-slide__card">
@@ -556,7 +556,7 @@
               </div>
               <p>Построение, корректировка и оформление чертежей</p>
             </div>
-            <!-- Дублируем для бесконечности -->
+            <!-- Дубли для бесконечности -->
             <div class="carousel-slide" data-index="0">
               <h3>Проектная документация</h3>
               <div class="carousel-slide__card">
@@ -664,9 +664,7 @@
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          // просто продолжаем
-        }, 200);
+        resizeTimer = setTimeout(() => {}, 200);
       });
 
       setTimeout(updateActiveSlide, 50);
