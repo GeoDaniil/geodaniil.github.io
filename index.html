@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Даниил Сапожков | Геодезист</title>
+  <title>Даниил Сапожков | Главная</title>
   <style>
-    /* ----- Reset & Fonts ----- */
+    /* ----- Сброс и шрифты ----- */
     * {
       margin: 0;
       padding: 0;
@@ -14,7 +14,7 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(145deg, #f0f7f4 0%, #e0f0ec 100%);
+      background: linear-gradient(145deg, #f0f7f4, #e0f0ec);
       color: #1e2b2a;
       line-height: 1.6;
       min-height: 100vh;
@@ -22,16 +22,15 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 30px;
     }
 
-    /* ----- Header ----- */
+    /* ----- Шапка ----- */
     .site-header {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
       padding: 16px 0;
       position: sticky;
       top: 0;
@@ -169,10 +168,6 @@
       opacity: 0.9;
     }
 
-    .home-summary-text:last-of-type {
-      margin-bottom: 0;
-    }
-
     /* ----- About ----- */
     .section--about {
       padding: 60px 0;
@@ -237,68 +232,73 @@
       font-weight: 600;
     }
 
-    /* ----- Carousel (skills) ----- */
+    /* ----- Карусель-лента (все карточки видны, движутся непрерывно) ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
+      overflow: hidden;
     }
 
     .carousel-wrapper {
       position: relative;
       overflow: hidden;
       margin-top: 30px;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
-      padding: 10px 0;
+      padding: 30px 0;
     }
 
     .carousel-track {
       display: flex;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      gap: 30px;
+      transition: transform 0.1s linear;
       will-change: transform;
+      align-items: center;
+      padding: 0 20px;
     }
 
     .carousel-slide {
-      flex: 0 0 100%;
+      flex: 0 0 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 20px 30px;
+      transition: all 0.4s ease;
+      opacity: 0.5;
+      transform: scale(0.8);
+      filter: blur(1px);
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: blur(0);
+      z-index: 2;
     }
 
     .carousel-slide h3 {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       color: #1e2b2a;
-      letter-spacing: -0.3px;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(4px);
-      padding: 6px 28px;
-      border-radius: 60px;
-      display: inline-block;
-      border: 1px solid rgba(78, 205, 196, 0.15);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      padding: 4px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(78, 205, 196, 0.1);
+      white-space: nowrap;
     }
 
     .carousel-slide__card {
       width: 100%;
-      max-width: 560px;
-      height: 340px;
-      border-radius: 32px;
+      height: 160px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       background: #f5f9f8;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
       border: 2px solid rgba(255, 255, 255, 0.6);
-      margin: 0 auto;
+      transition: all 0.4s ease;
     }
 
-    .carousel-slide__card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 24px 56px -12px rgba(78, 205, 196, 0.25);
+    .carousel-slide.active .carousel-slide__card {
+      box-shadow: 0 16px 40px rgba(78, 205, 196, 0.25);
       border-color: #4db6ac;
     }
 
@@ -307,48 +307,18 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.8s ease;
-    }
-
-    .carousel-slide__card:hover img {
-      transform: scale(1.04);
     }
 
     .carousel-slide p {
-      font-size: 1.1rem;
-      margin-top: 20px;
+      font-size: 0.9rem;
+      margin-top: 10px;
       color: #3d5a58;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(4px);
-      padding: 6px 28px;
-      border-radius: 60px;
-      border: 1px solid rgba(126, 87, 194, 0.1);
-      display: inline-block;
-    }
-
-    /* Dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #cbdad8;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      padding: 0;
-    }
-
-    .carousel-dot.active {
-      background: #4db6ac;
-      transform: scale(1.4);
-      box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+      padding: 4px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(126, 87, 194, 0.08);
+      white-space: nowrap;
     }
 
     /* ----- Footer ----- */
@@ -371,40 +341,36 @@
       font-weight: 500;
     }
 
-    /* ----- Responsive ----- */
+    /* ----- Адаптив ----- */
     @media (max-width: 768px) {
       .home-intro__grid {
         flex-direction: column;
         text-align: center;
       }
-
       .home-photo-card {
         flex: 0 0 auto;
         width: 200px;
       }
-
       .home-summary-card h1 {
         font-size: 2.2rem;
       }
-
       .section__title {
         font-size: 1.8rem;
       }
-
+      .carousel-slide {
+        flex: 0 0 160px;
+      }
       .carousel-slide__card {
-        height: 220px;
+        height: 120px;
       }
-
       .carousel-slide h3 {
-        font-size: 1.4rem;
-        padding: 4px 18px;
-      }
-
-      .carousel-slide p {
         font-size: 1rem;
-        padding: 4px 18px;
+        padding: 2px 12px;
       }
-
+      .carousel-slide p {
+        font-size: 0.8rem;
+        padding: 2px 12px;
+      }
       .about__text {
         padding: 24px 20px;
       }
@@ -473,7 +439,7 @@
       </div>
     </section>
 
-    <!-- CAROUSEL -->
+    <!-- CAROUSEL (все карточки видны, движутся непрерывно) -->
     <section class="section section--skills-slider">
       <div class="container">
         <div class="section__head">
@@ -483,48 +449,87 @@
 
         <div class="carousel-wrapper">
           <div class="carousel-track" id="carouselTrack">
-            <!-- Slide 1 -->
-            <div class="carousel-slide">
+            <!-- Карточки (повторяем несколько раз для бесконечности) -->
+            <!-- Оригинальные 6 карточек -->
+            <div class="carousel-slide" data-index="0">
               <h3>Проектная документация</h3>
               <div class="carousel-slide__card">
                 <img src="images/chertezh.jpg" alt="Проектная документация">
               </div>
               <p>Чтение проекта и исполнительной документации</p>
             </div>
-            <!-- Slide 2 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-index="1">
               <h3>Разбивочные работы</h3>
               <div class="carousel-slide__card">
                 <img src="images/razbiv.jpg" alt="Разбивочные работы">
               </div>
               <p>Подготовка и вынос проектных осей, точек и отметок</p>
             </div>
-            <!-- Slide 3 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-index="2">
               <h3>Геодезическая съёмка</h3>
               <div class="carousel-slide__card">
                 <img src="images/semka.jpg" alt="Геодезическая съёмка">
               </div>
               <p>Полевые измерения и контроль геометрии</p>
             </div>
-            <!-- Slide 4 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-index="3">
               <h3>Обработка съёмки</h3>
               <div class="carousel-slide__card">
                 <img src="images/chertezh.jpg" alt="Обработка съёмки">
               </div>
               <p>Обработка полевых данных и подготовка результатов</p>
             </div>
-            <!-- Slide 5 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-index="4">
               <h3>Фасады и витражи</h3>
               <div class="carousel-slide__card">
                 <img src="images/pik.jpg" alt="Фасады и витражи">
               </div>
               <p>Съёмка, обработка и контроль геометрии конструкций</p>
             </div>
-            <!-- Slide 6 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-index="5">
+              <h3>AutoCAD</h3>
+              <div class="carousel-slide__card">
+                <img src="images/autocad.png" alt="AutoCAD">
+              </div>
+              <p>Построение, корректировка и оформление чертежей</p>
+            </div>
+            <!-- Дублируем для бесконечности -->
+            <div class="carousel-slide" data-index="0">
+              <h3>Проектная документация</h3>
+              <div class="carousel-slide__card">
+                <img src="images/chertezh.jpg" alt="Проектная документация">
+              </div>
+              <p>Чтение проекта и исполнительной документации</p>
+            </div>
+            <div class="carousel-slide" data-index="1">
+              <h3>Разбивочные работы</h3>
+              <div class="carousel-slide__card">
+                <img src="images/razbiv.jpg" alt="Разбивочные работы">
+              </div>
+              <p>Подготовка и вынос проектных осей, точек и отметок</p>
+            </div>
+            <div class="carousel-slide" data-index="2">
+              <h3>Геодезическая съёмка</h3>
+              <div class="carousel-slide__card">
+                <img src="images/semka.jpg" alt="Геодезическая съёмка">
+              </div>
+              <p>Полевые измерения и контроль геометрии</p>
+            </div>
+            <div class="carousel-slide" data-index="3">
+              <h3>Обработка съёмки</h3>
+              <div class="carousel-slide__card">
+                <img src="images/chertezh.jpg" alt="Обработка съёмки">
+              </div>
+              <p>Обработка полевых данных и подготовка результатов</p>
+            </div>
+            <div class="carousel-slide" data-index="4">
+              <h3>Фасады и витражи</h3>
+              <div class="carousel-slide__card">
+                <img src="images/pik.jpg" alt="Фасады и витражи">
+              </div>
+              <p>Съёмка, обработка и контроль геометрии конструкций</p>
+            </div>
+            <div class="carousel-slide" data-index="5">
               <h3>AutoCAD</h3>
               <div class="carousel-slide__card">
                 <img src="images/autocad.png" alt="AutoCAD">
@@ -533,8 +538,6 @@
             </div>
           </div>
         </div>
-
-        <div class="carousel-dots" id="carouselDots"></div>
       </div>
     </section>
   </main>
@@ -547,112 +550,80 @@
     </div>
   </footer>
 
-  <!-- SCRIPT: бесконечная карусель с автопрокруткой влево (слева направо) -->
   <script>
     (function() {
       const track = document.getElementById('carouselTrack');
+      if (!track) return;
+
       const slides = track.querySelectorAll('.carousel-slide');
-      const dotsContainer = document.getElementById('carouselDots');
-      if (!track || slides.length === 0) return;
+      if (slides.length === 0) return;
 
-      const total = slides.length;
-      let currentIndex = 0;
-      let autoPlay = null;
-      const interval = 3500; // мс
+      // Определяем видимую область (ширина контейнера)
+      const wrapper = track.closest('.carousel-wrapper');
+      const wrapperWidth = wrapper.offsetWidth;
 
-      // Клонируем первый слайд в конец для бесконечности
-      const firstClone = slides[0].cloneNode(true);
-      track.appendChild(firstClone);
-      const allSlides = track.querySelectorAll('.carousel-slide');
-      const totalWithClone = allSlides.length; // total + 1
+      // Настройки
+      const slideWidth = slides[0].offsetWidth + 30; // ширина + gap
+      const totalSlides = slides.length;
+      let currentOffset = 0;
+      let speed = 0.5; // пикселей за кадр (чем больше, тем быстрее)
+      let animationId = null;
+      let isPaused = false;
 
-      // Создаём точки
-      const dots = [];
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.dataset.index = i;
-        dot.addEventListener('click', function() {
-          const idx = parseInt(this.dataset.index);
-          goTo(idx);
-          resetAuto();
-        });
-        dotsContainer.appendChild(dot);
-        dots.push(dot);
-      }
-
-      function goTo(index) {
-        if (index >= total) index = 0;
-        if (index < 0) index = total - 1;
-        currentIndex = index;
-        const slideWidth = allSlides[0].offsetWidth;
-        track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        updateDots(currentIndex);
-      }
-
-      function updateDots(index) {
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index);
+      // Функция определения активного (центрального) слайда
+      function updateActiveSlide() {
+        const center = wrapperWidth / 2;
+        slides.forEach((slide) => {
+          const rect = slide.getBoundingClientRect();
+          const slideCenter = rect.left + rect.width / 2;
+          const distance = Math.abs(slideCenter - center);
+          // Если слайд ближе всего к центру, делаем его активным
+          slide.classList.remove('active');
+          if (distance < 150) { // порог, можно подогнать
+            slide.classList.add('active');
+          }
         });
       }
 
-      function next() {
-        if (currentIndex >= total - 1) {
-          // Достигли последнего оригинального, переключаем на клон без анимации
-          const slideWidth = allSlides[0].offsetWidth;
-          track.style.transition = 'none';
-          track.style.transform = `translateX(-${total * slideWidth}px)`;
-          currentIndex = 0;
-          requestAnimationFrame(() => {
-            track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            track.style.transform = `translateX(0px)`;
-            updateDots(0);
-          });
-        } else {
-          goTo(currentIndex + 1);
+      // Основной цикл анимации
+      function animate() {
+        if (!isPaused) {
+          currentOffset -= speed;
+          // Если ушли слишком далеко влево, возвращаемся в начало (бесконечность)
+          if (Math.abs(currentOffset) >= (totalSlides / 2) * slideWidth) {
+            currentOffset = 0;
+          }
+          track.style.transform = `translateX(${currentOffset}px)`;
+          updateActiveSlide();
         }
+        animationId = requestAnimationFrame(animate);
       }
 
-      function startAuto() {
-        if (autoPlay) clearInterval(autoPlay);
-        autoPlay = setInterval(next, interval);
-      }
+      // Пауза при наведении на трек (или на wrapper)
+      wrapper.addEventListener('mouseenter', () => {
+        isPaused = true;
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        isPaused = false;
+      });
 
-      function stopAuto() {
-        if (autoPlay) {
-          clearInterval(autoPlay);
-          autoPlay = null;
-        }
-      }
+      // Запуск
+      animate();
 
-      function resetAuto() {
-        stopAuto();
-        startAuto();
-      }
-
-      // Остановка при наведении
-      const wrapper = document.querySelector('.carousel-wrapper');
-      wrapper.addEventListener('mouseenter', stopAuto);
-      wrapper.addEventListener('mouseleave', startAuto);
-
-      // Инициализация
-      goTo(0);
-      startAuto();
-
-      // Пересчёт при изменении размера окна
+      // Обновление при изменении размера окна
       let resizeTimer;
-      window.addEventListener('resize', function() {
+      window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-          const slideWidth = allSlides[0].offsetWidth;
-          track.style.transition = 'none';
-          track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-          requestAnimationFrame(() => {
-            track.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          });
+          // Пересчитываем ширину слайдов
+          const newSlideWidth = slides[0].offsetWidth + 30;
+          // обновим позицию, чтобы не было рывка
+          // просто продолжаем
         }, 200);
       });
+
+      // Начальная активация
+      setTimeout(updateActiveSlide, 50);
     })();
   </script>
 </body>
