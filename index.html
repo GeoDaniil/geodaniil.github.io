@@ -168,7 +168,7 @@
       opacity: 0.9;
     }
 
-    /* ----- About ----- */
+    /* ----- About (новый, с картинками) ----- */
     .section--about {
       padding: 60px 0;
     }
@@ -200,36 +200,60 @@
       background-clip: text;
     }
 
-    .about__text {
-      max-width: 820px;
-      margin: 0 auto;
+    .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .about-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(8px);
-      padding: 40px 48px;
+      padding: 30px 40px;
       border-radius: 32px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.8);
-      font-size: 1.05rem;
-      color: #1e2b2a;
-      line-height: 1.7;
       transition: box-shadow 0.3s;
     }
 
-    .about__text:hover {
+    .about-item:hover {
       box-shadow: 0 20px 50px rgba(78, 205, 196, 0.08);
     }
 
-    .about__text p {
-      margin-bottom: 18px;
+    .about-item__text {
+      flex: 1;
+      font-size: 1.05rem;
+      color: #1e2b2a;
+      line-height: 1.7;
     }
 
-    .about__text p:last-child {
+    .about-item__text p {
+      margin-bottom: 16px;
+    }
+
+    .about-item__text p:last-child {
       margin-bottom: 0;
     }
 
-    .about__text strong {
+    .about-item__text strong {
       color: #4db6ac;
       font-weight: 600;
+    }
+
+    .about-item__image {
+      flex: 0 0 200px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .about-item__image img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* ----- Карусель-лента (все карточки видны, движутся непрерывно) ----- */
@@ -357,6 +381,16 @@
       .section__title {
         font-size: 1.8rem;
       }
+      .about-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      .about-item__image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+      }
       .carousel-slide {
         flex: 0 0 160px;
       }
@@ -370,9 +404,6 @@
       .carousel-slide p {
         font-size: 0.8rem;
         padding: 2px 12px;
-      }
-      .about__text {
-        padding: 24px 20px;
       }
     }
   </style>
@@ -413,28 +444,47 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT (новый, с картинками) -->
     <section class="section section--about">
       <div class="container">
         <div class="section__head">
           <p class="section__kicker">Мой путь</p>
           <h2 class="section__title">От помощника до <span>самостоятельного</span> геодезиста</h2>
         </div>
-        <div class="about__text">
-          <p>
-            Начал карьеру в компании <strong>«Накор‑К»</strong> в должности помощника геодезиста в 2023 году.
-            За 3 года освоил все этапы геодезического сопровождения строительства: от приёмки геодезической основы
-            до сдачи исполнительных схем заказчику.
-          </p>
-          <p>
-            Самостоятельно веду объекты в Москве – жилые комплексы на территории ЗИЛ, Гагаринский и другие.
-            Работаю с высотными домами, сложными фасадами и витражами, требующими высокой точности.
-          </p>
-          <p>
-            В работе стараюсь быть внимательным и осторожным, соблюдаю требования нормативной документации
-            (ГОСТы, СП) там, где это необходимо для обеспечения качества измерений и надёжности результатов.
-            Постоянно повышаю квалификацию, слежу за обновлениями в геодезическом законодательстве.
-          </p>
+        <div class="about-grid">
+
+          <!-- Первый блок: текст + логотип -->
+          <div class="about-item">
+            <div class="about-item__text">
+              <p>
+                Начал карьеру в компании <strong>«Накор‑К»</strong> в должности помощника геодезиста в 2023 году.
+                За 3 года освоил все этапы геодезического сопровождения строительства: от приёмки геодезической основы
+                до сдачи исполнительных схем заказчику.
+              </p>
+            </div>
+            <div class="about-item__image">
+              <img src="images/logo.png" alt="Логотип компании Накор-К">
+            </div>
+          </div>
+
+          <!-- Второй блок: фото + текст -->
+          <div class="about-item">
+            <div class="about-item__image">
+              <img src="images/employee-working-promotion.jpg" alt="Работа на объекте">
+            </div>
+            <div class="about-item__text">
+              <p>
+                Самостоятельно веду объекты в Москве – жилые комплексы на территории ЗИЛ, Гагаринский и другие.
+                Работаю с высотными домами, сложными фасадами и витражами, требующими высокой точности.
+              </p>
+              <p>
+                В работе стараюсь быть внимательным и осторожным, соблюдаю требования нормативной документации
+                (ГОСТы, СП) там, где это необходимо для обеспечения качества измерений и надёжности результатов.
+                Постоянно повышаю квалификацию, слежу за обновлениями в геодезическом законодательстве.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -443,7 +493,8 @@
     <section class="section section--skills-slider">
       <div class="container">
         <div class="section__head">
-          <h2 class="section__title">Основные <span>направления</span> работ</h2>
+          <p class="section__kicker">Геодезия</p>
+          <h2 class="section__title">Основные <span>профессиональные</span> навыки</h2>
         </div>
 
         <div class="carousel-wrapper">
@@ -557,38 +608,32 @@
       const slides = track.querySelectorAll('.carousel-slide');
       if (slides.length === 0) return;
 
-      // Определяем видимую область (ширина контейнера)
       const wrapper = track.closest('.carousel-wrapper');
       const wrapperWidth = wrapper.offsetWidth;
 
-      // Настройки
-      const slideWidth = slides[0].offsetWidth + 30; // ширина + gap
+      const slideWidth = slides[0].offsetWidth + 30;
       const totalSlides = slides.length;
       let currentOffset = 0;
-      let speed = 0.5; // пикселей за кадр (чем больше, тем быстрее)
+      let speed = 0.5;
       let animationId = null;
       let isPaused = false;
 
-      // Функция определения активного (центрального) слайда
       function updateActiveSlide() {
         const center = wrapperWidth / 2;
         slides.forEach((slide) => {
           const rect = slide.getBoundingClientRect();
           const slideCenter = rect.left + rect.width / 2;
           const distance = Math.abs(slideCenter - center);
-          // Если слайд ближе всего к центру, делаем его активным
           slide.classList.remove('active');
-          if (distance < 150) { // порог, можно подогнать
+          if (distance < 150) {
             slide.classList.add('active');
           }
         });
       }
 
-      // Основной цикл анимации
       function animate() {
         if (!isPaused) {
           currentOffset -= speed;
-          // Если ушли слишком далеко влево, возвращаемся в начало (бесконечность)
           if (Math.abs(currentOffset) >= (totalSlides / 2) * slideWidth) {
             currentOffset = 0;
           }
@@ -598,30 +643,19 @@
         animationId = requestAnimationFrame(animate);
       }
 
-      // Пауза при наведении на трек (или на wrapper)
-      wrapper.addEventListener('mouseenter', () => {
-        isPaused = true;
-      });
-      wrapper.addEventListener('mouseleave', () => {
-        isPaused = false;
-      });
+      wrapper.addEventListener('mouseenter', () => { isPaused = true; });
+      wrapper.addEventListener('mouseleave', () => { isPaused = false; });
 
-      // Запуск
       animate();
 
-      // Обновление при изменении размера окна
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-          // Пересчитываем ширину слайдов
-          const newSlideWidth = slides[0].offsetWidth + 30;
-          // обновим позицию, чтобы не было рывка
           // просто продолжаем
         }, 200);
       });
 
-      // Начальная активация
       setTimeout(updateActiveSlide, 50);
     })();
   </script>
