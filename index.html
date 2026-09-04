@@ -8,8 +8,14 @@
   <link rel="stylesheet" href="css/main.css" />
   <style>
     /* =========================
+       КУРСОР-ПРИЦЕЛ
+       ========================= */
+    body {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" fill="%23d32f2f" stroke="white" stroke-width="2"/><path d="M14 2 L14 10 M14 18 L14 26 M2 14 L10 14 M18 14 L26 14" stroke="%23d32f2f" stroke-width="3"/><circle cx="14" cy="14" r="3" fill="white"/></svg>') 14 14, auto;
+    }
+
+    /* =========================
        ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ГЛАВНОЙ СТРАНИЦЫ
-       (поддерживают основной CSS)
        ========================= */
 
     /* ----- Hero ----- */
@@ -195,155 +201,149 @@
       display: block;
     }
 
-  /* =========================
-   КАРУСЕЛЬ – НОВЫЙ ДИЗАЙН
-   ========================= */
+    /* =========================
+       КОНТЕЙНЕРЫ КАРУСЕЛИ
+       ========================= */
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+      padding: 30px 0;
+    }
 
-.carousel-slide {
-  flex: 0 0 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0.4;
-  transform: scale(0.85);
-  filter: blur(0.5px);
-  position: relative;
-}
+    .carousel-track {
+      display: flex;
+      gap: 30px;
+      transition: transform 0.1s linear;
+      will-change: transform;
+      align-items: center;
+      padding: 0 20px;
+    }
 
-/* Активная карточка – увеличение, чёткость, подсветка */
-.carousel-slide.active {
-  opacity: 1;
-  transform: scale(1.05);
-  filter: blur(0);
-  z-index: 2;
-}
+    /* =========================
+       КАРУСЕЛЬ – НОВЫЙ ДИЗАЙН
+       ========================= */
+    .carousel-slide {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity: 0.4;
+      transform: scale(0.85);
+      filter: blur(0.5px);
+      position: relative;
+    }
 
-/* Заголовок – над картинкой, стильный */
-.carousel-slide h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--black);
-  background: linear-gradient(135deg, rgba(168, 224, 99, 0.15), rgba(124, 111, 232, 0.10));
-  padding: 6px 20px;
-  border-radius: 60px;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(168, 224, 99, 0.2);
-  transition: all 0.3s;
-  letter-spacing: -0.02em;
-}
+    .carousel-slide.active {
+      opacity: 1;
+      transform: scale(1.05);
+      filter: blur(0);
+      z-index: 2;
+    }
 
-.carousel-slide.active h3 {
-  background: linear-gradient(135deg, rgba(168, 224, 99, 0.25), rgba(124, 111, 232, 0.18));
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(168, 224, 99, 0.15);
-}
+    .carousel-slide h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--black);
+      background: linear-gradient(135deg, rgba(168, 224, 99, 0.15), rgba(124, 111, 232, 0.10));
+      padding: 6px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(168, 224, 99, 0.2);
+      transition: all 0.3s;
+      letter-spacing: -0.02em;
+    }
 
-/* Плашка с картинкой – градиентная рамка, тень, подсветка */
-.carousel-slide__card {
-  width: 100%;
-  height: 160px;
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  background: var(--green-light);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  transition: all 0.4s ease;
-}
+    .carousel-slide.active h3 {
+      background: linear-gradient(135deg, rgba(168, 224, 99, 0.25), rgba(124, 111, 232, 0.18));
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(168, 224, 99, 0.15);
+    }
 
-/* Градиентная рамка через псевдоэлемент */
-.carousel-slide__card::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 26px;
-  padding: 2px;
-  background: linear-gradient(135deg, transparent 30%, var(--accent), var(--accent-extra));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
+    .carousel-slide__card {
+      width: 100%;
+      height: 160px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background: var(--green-light);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      transition: all 0.4s ease;
+    }
 
-.carousel-slide.active .carousel-slide__card::before {
-  opacity: 1;
-}
+    .carousel-slide__card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      padding: 2px;
+      background: linear-gradient(135deg, transparent 30%, var(--accent), var(--accent-extra));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
 
-.carousel-slide.active .carousel-slide__card {
-  box-shadow: 0 16px 40px rgba(63, 125, 53, 0.20);
-  transform: scale(1.02);
-}
+    .carousel-slide.active .carousel-slide__card::before {
+      opacity: 1;
+    }
 
-.carousel-slide__card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
+    .carousel-slide.active .carousel-slide__card {
+      box-shadow: 0 16px 40px rgba(63, 125, 53, 0.20);
+      transform: scale(1.02);
+    }
 
-.carousel-slide.active .carousel-slide__card img {
-  transform: scale(1.04);
-}
+    .carousel-slide__card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
 
-/* Описание – под картинкой, стильно */
-.carousel-slide p {
-  font-size: 0.9rem;
-  margin-top: 14px;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(4px);
-  padding: 6px 18px;
-  border-radius: 60px;
-  border: 1px solid rgba(124, 111, 232, 0.10);
-  transition: all 0.3s;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
+    .carousel-slide.active .carousel-slide__card img {
+      transform: scale(1.04);
+    }
 
-.carousel-slide.active p {
-  background: rgba(124, 111, 232, 0.08);
-  border-color: var(--accent-extra);
-  box-shadow: 0 4px 12px rgba(124, 111, 232, 0.08);
-}
+    .carousel-slide p {
+      font-size: 0.9rem;
+      margin-top: 14px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 6px 18px;
+      border-radius: 60px;
+      border: 1px solid rgba(124, 111, 232, 0.10);
+      transition: all 0.3s;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
 
-/* Эффект при наведении на активную карточку – дополнительная подсветка */
-.carousel-slide.active:hover .carousel-slide__card {
-  box-shadow: 0 20px 48px rgba(63, 125, 53, 0.25);
-}
+    .carousel-slide.active p {
+      background: rgba(124, 111, 232, 0.08);
+      border-color: var(--accent-extra);
+      box-shadow: 0 4px 12px rgba(124, 111, 232, 0.08);
+    }
 
-.carousel-slide.active:hover h3 {
-  background: linear-gradient(135deg, rgba(168, 224, 99, 0.30), rgba(124, 111, 232, 0.22));
-}
+    .carousel-slide.active:hover .carousel-slide__card {
+      box-shadow: 0 20px 48px rgba(63, 125, 53, 0.25);
+    }
 
-.carousel-slide.active:hover p {
-  background: rgba(124, 111, 232, 0.12);
-}
+    .carousel-slide.active:hover h3 {
+      background: linear-gradient(135deg, rgba(168, 224, 99, 0.30), rgba(124, 111, 232, 0.22));
+    }
 
-/* Адаптив под мобильные */
-@media (max-width: 768px) {
-  .carousel-slide {
-    flex: 0 0 160px;
-  }
-  .carousel-slide__card {
-    height: 120px;
-  }
-  .carousel-slide h3 {
-    font-size: 1rem;
-    padding: 4px 14px;
-  }
-  .carousel-slide p {
-    font-size: 0.8rem;
-    padding: 4px 14px;
-  }
-}
+    .carousel-slide.active:hover p {
+      background: rgba(124, 111, 232, 0.12);
+    }
 
     /* ----- Адаптив ----- */
     @media (max-width: 980px) {
@@ -393,11 +393,11 @@
       }
       .carousel-slide h3 {
         font-size: 1rem;
-        padding: 2px 12px;
+        padding: 4px 14px;
       }
       .carousel-slide p {
         font-size: 0.8rem;
-        padding: 2px 12px;
+        padding: 4px 14px;
       }
       .home-intro::after,
       .section--about::after {
