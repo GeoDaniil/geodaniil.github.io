@@ -168,7 +168,7 @@
       opacity: 0.9;
     }
 
-    /* ----- About (новый, с картинками) ----- */
+    /* ----- ABOUT (текст и картинки отдельными плашками) ----- */
     .section--about {
       padding: 60px 0;
     }
@@ -203,13 +203,24 @@
     .about-grid {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 50px;
     }
 
-    .about-item {
+    .about-row {
       display: flex;
       align-items: center;
-      gap: 40px;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .about-row--reverse {
+      flex-direction: row-reverse;
+    }
+
+    /* Текстовая плашка */
+    .about-text-card {
+      flex: 1;
+      min-width: 280px;
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(8px);
       padding: 30px 40px;
@@ -217,40 +228,41 @@
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.8);
       transition: box-shadow 0.3s;
-    }
-
-    .about-item:hover {
-      box-shadow: 0 20px 50px rgba(78, 205, 196, 0.08);
-    }
-
-    .about-item__text {
-      flex: 1;
       font-size: 1.05rem;
       color: #1e2b2a;
       line-height: 1.7;
     }
 
-    .about-item__text p {
+    .about-text-card:hover {
+      box-shadow: 0 20px 50px rgba(78, 205, 196, 0.08);
+    }
+
+    .about-text-card p {
       margin-bottom: 16px;
     }
 
-    .about-item__text p:last-child {
+    .about-text-card p:last-child {
       margin-bottom: 0;
     }
 
-    .about-item__text strong {
+    .about-text-card strong {
       color: #4db6ac;
       font-weight: 600;
     }
 
-    .about-item__image {
-      flex: 0 0 200px;
-      border-radius: 20px;
+    /* Картинка — просто скруглённые углы, без фона и тени */
+    .about-image {
+      flex: 0 0 320px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease;
     }
 
-    .about-item__image img {
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-image img {
       width: 100%;
       height: auto;
       display: block;
@@ -381,15 +393,17 @@
       .section__title {
         font-size: 1.8rem;
       }
-      .about-item {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
+      .about-row {
+        flex-direction: column !important;
+        gap: 30px;
       }
-      .about-item__image {
+      .about-image {
         flex: 0 0 auto;
         width: 100%;
-        max-width: 300px;
+        max-width: 400px;
+      }
+      .about-text-card {
+        padding: 24px 20px;
       }
       .carousel-slide {
         flex: 0 0 160px;
@@ -444,7 +458,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (новый, с картинками) -->
+    <!-- ABOUT (текст и картинки отдельными плашками) -->
     <section class="section section--about">
       <div class="container">
         <div class="section__head">
@@ -453,26 +467,26 @@
         </div>
         <div class="about-grid">
 
-          <!-- Первый блок: текст + логотип -->
-          <div class="about-item">
-            <div class="about-item__text">
+          <!-- Первая строка: текст (слева) + картинка (справа) -->
+          <div class="about-row">
+            <div class="about-text-card">
               <p>
                 Начал карьеру в компании <strong>«Накор‑К»</strong> в должности помощника геодезиста в 2023 году.
                 За 3 года освоил все этапы геодезического сопровождения строительства: от приёмки геодезической основы
                 до сдачи исполнительных схем заказчику.
               </p>
             </div>
-            <div class="about-item__image">
+            <div class="about-image">
               <img src="images/logo.png" alt="Логотип компании Накор-К">
             </div>
           </div>
 
-          <!-- Второй блок: фото + текст -->
-          <div class="about-item">
-            <div class="about-item__image">
+          <!-- Вторая строка: картинка (слева) + текст (справа) -->
+          <div class="about-row about-row--reverse">
+            <div class="about-image">
               <img src="images/employee-working-promotion.jpg" alt="Работа на объекте">
             </div>
-            <div class="about-item__text">
+            <div class="about-text-card">
               <p>
                 Самостоятельно веду объекты в Москве – жилые комплексы на территории ЗИЛ, Гагаринский и другие.
                 Работаю с высотными домами, сложными фасадами и витражами, требующими высокой точности.
@@ -499,7 +513,6 @@
 
         <div class="carousel-wrapper">
           <div class="carousel-track" id="carouselTrack">
-            <!-- Карточки (повторяем несколько раз для бесконечности) -->
             <!-- Оригинальные 6 карточек -->
             <div class="carousel-slide" data-index="0">
               <h3>Проектная документация</h3>
