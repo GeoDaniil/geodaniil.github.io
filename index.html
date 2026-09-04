@@ -110,7 +110,7 @@
     /* ----- About (Мой путь) ----- */
     .section--about {
       padding: 60px 0;
-      background: var(--white); /* убрали салатовый градиент */
+      background: var(--white);
       border-radius: 40px 40px 0 0;
       margin-top: 10px;
       box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
@@ -208,6 +208,21 @@
       position: relative;
     }
 
+    /* Разделитель сверху */
+    .section--education::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 500px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-extra), transparent);
+      border-radius: 4px;
+      opacity: 0.3;
+    }
+
     .section--education::after {
       content: '';
       position: absolute;
@@ -217,7 +232,7 @@
       width: 70%;
       max-width: 500px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-extra), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-extra), var(--accent), transparent);
       border-radius: 4px;
       opacity: 0.3;
     }
@@ -248,9 +263,28 @@
       color: var(--accent-dark);
     }
 
-    /* =========================
-       КОНТЕЙНЕРЫ КАРУСЕЛИ
-       ========================= */
+    /* ----- Skills / Carousel (Направления работ) ----- */
+    .section--skills-slider {
+      padding: 60px 0 80px;
+      background: var(--white);
+      position: relative;
+    }
+
+    /* Разделитель сверху */
+    .section--skills-slider::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 500px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-extra), transparent);
+      border-radius: 4px;
+      opacity: 0.3;
+    }
+
     .carousel-wrapper {
       position: relative;
       overflow: hidden;
@@ -451,7 +485,9 @@
       }
       .home-intro::after,
       .section--about::after,
-      .section--education::after {
+      .section--education::before,
+      .section--education::after,
+      .section--skills-slider::before {
         width: 60%;
       }
     }
@@ -517,7 +553,7 @@
 
           <div class="about-row about-row--reverse">
             <div class="about-image">
-              <img src="images/employee-working-promotion.jpg" alt="Работа на объекте">
+              <img src="images/high.jpg" alt="Работа на объекте">
             </div>
             <div class="about-text-card">
               <p>
@@ -545,6 +581,7 @@
         </div>
         <div class="education-card">
           <p>
+            <strong>Среднее специальное образование</strong><br />
             <strong>Специальность:</strong> Строительство и эксплуатация дорог и аэродромов<br />
             <strong>Год окончания:</strong> 2022<br />
             <strong>Форма обучения:</strong> очная (4 года)
