@@ -133,10 +133,7 @@
     /* ----- About (Мой путь) ----- */
     .section--about {
       padding: 60px 0;
-      background: var(--white);
-      border-radius: 40px 40px 0 0;
-      margin-top: 10px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.02);
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
@@ -227,7 +224,7 @@
     /* ----- Education (Образование) ----- */
     .section--education {
       padding: 60px 0;
-      background: var(--white);
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
@@ -288,7 +285,7 @@
     /* ----- Skills / Carousel (Направления работ) ----- */
     .section--skills-slider {
       padding: 60px 0 80px;
-      background: var(--white);
+      background: transparent; /* убрали белый фон */
       position: relative;
     }
 
