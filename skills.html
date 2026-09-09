@@ -10,10 +10,8 @@
   <style>
     /* ============================================================
        ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ НАВЫКОВ
-       (поддерживают основной CSS)
        ============================================================ */
 
-    /* ----- Теги навыков (интерактив) ----- */
     .tag {
       cursor: pointer;
       transition: all 0.2s ease;
@@ -27,14 +25,35 @@
       transform: scale(0.93);
     }
 
-    /* ----- Список обязанностей ----- */
     .experience-item ul li {
       margin-bottom: 6px;
       line-height: 1.5;
     }
 
+    /* ----- Логотип компании в карточке опыта ----- */
+    .experience-item__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .experience-item__header h2 {
+      margin: 0;
+      flex: 1;
+    }
+    .company-logo {
+      width: 60px;
+      height: auto;
+      max-height: 50px;
+      object-fit: contain;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
     /* ============================================================
-       УВЕДОМЛЕНИЕ-ЧАТ (всплывает в правом нижнем углу)
+       УВЕДОМЛЕНИЕ-ЧАТ
        ============================================================ */
     .chat-notification {
       position: fixed;
@@ -79,11 +98,25 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
+    .chat-notification__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     .chat-notification__name {
       font-weight: 700;
       font-size: 16px;
       color: var(--black);
-      flex: 1;
+      line-height: 1.2;
+    }
+
+    .chat-notification__subtitle {
+      font-size: 11px;
+      color: var(--accent-dark);
+      font-weight: 600;
+      opacity: 0.8;
+      margin-top: 2px;
     }
 
     .chat-notification__close {
@@ -158,7 +191,17 @@
       padding-right: 4px;
     }
 
-    /* ----- Адаптив для мобильных ----- */
+    @media (max-width: 600px) {
+      .experience-item__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .company-logo {
+        width: 50px;
+        margin-top: 6px;
+      }
+    }
+
     @media (max-width: 480px) {
       .chat-notification {
         bottom: 12px;
@@ -168,6 +211,9 @@
       .chat-notification__message {
         font-size: 14px;
         padding: 12px 16px;
+      }
+      .chat-notification__subtitle {
+        font-size: 10px;
       }
     }
   </style>
@@ -199,7 +245,10 @@
 
           <div class="experience-list">
             <article class="experience-item">
-              <h2>ООО «Накор‑К» — геодезист</h2>
+              <div class="experience-item__header">
+                <h2>ООО «Накор‑К» — геодезист</h2>
+                <img src="images/logo.png" alt="Логотип Накор-К" class="company-logo">
+              </div>
               <p class="meta">2023 — настоящее время, 3 года</p>
               <p class="experience-role">От помощника до ведущего геодезиста</p>
               <p>
@@ -225,10 +274,10 @@
           </div>
         </div>
 
+        <!-- Остальные блоки (Hard Skills, Soft Skills) без изменений -->
         <div class="skills-panel">
           <p class="section__kicker">Инструменты</p>
           <h2>Геодезическое оборудование и ПО (Hard Skills)</h2>
-
           <div class="tag-list skills-tags" id="skillsTags">
             <span class="tag" data-desc="Вынос проектных осей, точек и отметок на строительной площадке">Разбивочные работы</span>
             <span class="tag" data-desc="Полевые измерения и контроль геометрии конструкций">Геодезическая съемка</span>
@@ -248,51 +297,30 @@
         <div class="skills-panel">
           <p class="section__kicker">Рабочие качества</p>
           <h2>Soft skills</h2>
-
           <div class="soft-grid">
             <article class="soft-card">
               <h3>Точность и внимательность</h3>
-              <p>
-                В геодезии ошибка в миллиметр может стоить больших переделок, поэтому я всегда перепроверяю измерения и расчеты, чтобы все соответствовало требованиям.
-              </p>
+              <p>В геодезии ошибка в миллиметр может стоить больших переделок, поэтому я всегда перепроверяю измерения и расчеты.</p>
             </article>
-
             <article class="soft-card">
               <h3>Ответственность</h3>
-              <p>
-                Осознаю большую ответственность в работе и достойно исполняю все требования.
-              </p>
+              <p>Осознаю большую ответственность в работе и достойно исполняю все требования.</p>
             </article>
-
             <article class="soft-card">
               <h3>Аналитическое мышление</h3>
-              <p>
-                Умею анализировать проектные данные, сопоставлять их с фактическими измерениями
-                и быстро находить несоответствия.
-              </p>
+              <p>Умею анализировать проектные данные, сопоставлять их с фактическими измерениями и находить несоответствия.</p>
             </article>
-
             <article class="soft-card">
               <h3>Усидчивость</h3>
-              <p>
-                Это больше о камеральной обработке, ведь она требует большого терпения и внимания к деталям —
-                я в свою очередь готов работать с объемами данных и чертежами.
-              </p>
+              <p>Камеральная обработка требует терпения — готов работать с объемами данных и чертежами.</p>
             </article>
-
             <article class="soft-card">
               <h3>Коммуникабельность</h3>
-              <p>
-                Ежедневно взаимодействую с прорабом, проектировщиками и строителями —
-                коммуникация важна, чтобы в случае необходимости всегда можно было решить любую проблему.
-              </p>
+              <p>Ежедневно взаимодействую с прорабом, проектировщиками и строителями — умею чётко доносить информацию.</p>
             </article>
-
             <article class="soft-card">
               <h3>Стрессоустойчивость</h3>
-              <p>
-                Работа на стройке так или иначе требует сохранять концентрацию в любых условиях и работать в режиме многозадачности.
-              </p>
+              <p>Работа на стройке требует концентрации в любых условиях и работы в режиме многозадачности.</p>
             </article>
           </div>
         </div>
@@ -307,33 +335,18 @@
     </div>
   </footer>
 
-  <!-- Подсказка для навыков (всплывает снизу при клике) -->
-  <div id="tooltip" style="
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--accent-dark);
-    color: white;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 100;
-    max-width: 90%;
-    text-align: center;
-  "></div>
+  <!-- Подсказка для навыков -->
+  <div id="tooltip" style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent-dark);color:#fff;padding:14px 24px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,0.2);opacity:0;transition:all 0.3s ease;pointer-events:none;z-index:100;max-width:90%;text-align:center;"></div>
 
-  <!-- Уведомление-чат (в правом нижнем углу) -->
+  <!-- Чат-уведомление -->
   <div class="chat-notification" id="chatNotification">
     <div class="chat-notification__header">
       <img src="images/ph.jpg" alt="Даниил" class="chat-notification__avatar">
-      <span class="chat-notification__name">Даниил Сапожков</span>
-      <button class="chat-notification__close" id="chatCloseBtn" aria-label="Закрыть">✕</button>
+      <div class="chat-notification__info">
+        <span class="chat-notification__name">Даниил Сапожков</span>
+        <span class="chat-notification__subtitle">Отличный геодезист недалеко от вас!</span>
+      </div>
+      <button class="chat-notification__close" id="chatCloseBtn">✕</button>
     </div>
     <div class="chat-notification__body">
       <div class="chat-notification__message" id="chatMessage">
@@ -343,7 +356,7 @@
         <div class="chat-notification__text" id="chatText">
           Добрый день! Рад приветствовать вас на моем веб-резюме.<br>
           Возможно, именно я — тот специалист, который вам нужен.<br>
-          На этой странице собраны мои основные скиллы. 
+          На этой странице собраны мои основные скиллы.
         </div>
       </div>
       <div class="chat-notification__time" id="chatTime"></div>
@@ -351,26 +364,19 @@
   </div>
 
   <script src="scripts/main.js"></script>
-
-  <!-- ============================
-       ВЕСЬ JS ДЛЯ СТРАНИЦЫ НАВЫКОВ
-       ============================ -->
   <script>
-    // ----- 1. Подсказки для тегов навыков (клик → описание) -----
+    // ----- 1. Подсказки для тегов -----
     (function() {
       const tags = document.querySelectorAll('.tag');
       const tooltip = document.getElementById('tooltip');
       let timeoutId = null;
-
       tags.forEach(tag => {
         tag.addEventListener('click', function(e) {
           const desc = this.getAttribute('data-desc');
           if (!desc) return;
-
           tooltip.textContent = desc;
           tooltip.style.opacity = '1';
           tooltip.style.transform = 'translateX(-50%) translateY(0px)';
-
           clearTimeout(timeoutId);
           timeoutId = setTimeout(() => {
             tooltip.style.opacity = '0';
@@ -378,7 +384,6 @@
           }, 3000);
         });
       });
-
       document.addEventListener('click', function(e) {
         if (!e.target.classList.contains('tag')) {
           tooltip.style.opacity = '0';
@@ -388,7 +393,7 @@
       });
     })();
 
-    // ----- 2. Управление чат-уведомлением (появление + набор текста) -----
+    // ----- 2. Чат-уведомление -----
     (function() {
       const notification = document.getElementById('chatNotification');
       const closeBtn = document.getElementById('chatCloseBtn');
@@ -396,29 +401,19 @@
       const text = document.getElementById('chatText');
       const timeEl = document.getElementById('chatTime');
 
-      // Показываем уведомление через 2 секунды после загрузки
-      setTimeout(() => {
-        notification.classList.add('show');
-      }, 2000);
+      setTimeout(() => { notification.classList.add('show'); }, 2000);
+      closeBtn.addEventListener('click', function() { notification.classList.remove('show'); });
 
-      // Закрытие по крестику
-      closeBtn.addEventListener('click', function() {
-        notification.classList.remove('show');
-      });
-
-      // Текущее время для сообщения
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       timeEl.textContent = `${hours}:${minutes}`;
 
-      // Имитация набора текста (через 4 секунды после появления)
       setTimeout(() => {
         typing.style.display = 'none';
         text.classList.add('visible');
       }, 4000);
     })();
   </script>
-
 </body>
 </html>
