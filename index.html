@@ -74,7 +74,17 @@ body {
       width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
     }
-
+.about-row {
+  background: rgba(168, 224, 99, 0.12); /* лёгкий салатовый полупрозрачный */
+  border-radius: 32px; /* скруглённые углы */
+  padding: 16px 24px; /* чтобы фон не прилипал к содержимому */
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.about-row:hover {
+  background: rgba(168, 224, 99, 0.22);
+  box-shadow: 0 8px 24px rgba(63, 125, 53, 0.08);
+}
+   
     /* ---- Шапка ---- */
     .site-header {
       position: sticky;
