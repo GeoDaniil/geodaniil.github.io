@@ -413,6 +413,7 @@
       border-radius: 4px;
       opacity: 0.3;
     }
+
     .education-card {
       max-width: 820px;
       margin: 0 auto;
@@ -427,6 +428,8 @@
       color: var(--text);
       line-height: 1.7;
       text-align: center;
+      position: relative; /* для позиционирования тултипа */
+      cursor: help;
     }
     .education-card:hover {
       box-shadow: var(--shadow-hover);
@@ -435,6 +438,56 @@
     }
     .education-card strong {
       color: var(--accent-dark);
+    }
+
+    /* ----- Тултип для образования ----- */
+    .education-card .tooltip {
+      position: absolute;
+      bottom: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: var(--accent-dark);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      width: 300px;
+      max-width: 90vw;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      z-index: 10;
+      text-align: left;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      pointer-events: none;
+    }
+    .education-card .tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: var(--accent-dark);
+    }
+    .education-card .tooltip.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .education-card .tooltip {
+        width: 260px;
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        padding: 14px 16px;
+        font-size: 13px;
+      }
+      .education-card .tooltip.active {
+        transform: translateX(-50%) translateY(0);
+      }
     }
 
     /* ---- Карусель (направления работ) ---- */
@@ -725,21 +778,27 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
+    <!-- EDUCATION (обновлённая с тултипом) -->
     <section class="section section--education">
       <div class="container">
         <div class="section__head">
           <span class="section__kicker">Образование</span>
           <h2 class="section__title">Московский автомобильно-дорожный колледж им. Николаева</h2>
         </div>
-        <div class="education-card">
+        <div class="education-card" id="educationCard">
+          <!-- Тултип -->
+          <div class="tooltip" id="educationTooltip">
+            <strong>Почему геодезия?</strong><br>
+            Во время обучения на строительстве дорог и аэродромов изучал основы геодезии. Мне показалось это интересным, и я решил углубиться в профессию. Поработав немного в дорожной сфере, понял, что геодезия — моё призвание.
+          </div>
+
           <p>
             <strong>Среднее специальное образование</strong><br />
             <strong>Специальность:</strong> Строительство и эксплуатация дорог и аэродромов<br />
             <strong>Год окончания:</strong> 2022<br />
             <strong>Форма обучения:</strong> очная (4 года)
           </p>
-          <!-- НОВЫЙ БЛОК С ПЛАНАМИ -->
+          <!-- Планы на будущее -->
           <div style="margin-top: 24px; padding-top: 20px; border-top: 2px dashed var(--accent);">
             <p style="font-weight: 600; color: var(--accent-dark);">
              Планы на будущее
@@ -748,7 +807,6 @@
               В ближайшее время планирую поступить в высшее учебное заведение по направлению 
               <strong>«Прикладная геодезия»</strong>, 
               чтобы углубить знания и повысить свою квалификацию. 
-              
             </p>
           </div>
         </div>
@@ -867,6 +925,7 @@
   </footer>
 
   <script>
+    // ----- 1. Карусель (без изменений) -----
     (function() {
       const track = document.getElementById('carouselTrack');
       if (!track) return;
@@ -921,6 +980,38 @@
       });
 
       setTimeout(updateActiveSlide, 50);
+    })();
+
+    // ----- 2. Тултип для образования (hover + click) -----
+    (function() {
+      const card = document.getElementById('educationCard');
+      const tooltip = document.getElementById('educationTooltip');
+      if (!card || !tooltip) return;
+
+      // Определяем, есть ли поддержка hover (не touch-устройство)
+      const hasHover = window.matchMedia('(hover: hover)').matches;
+
+      if (hasHover) {
+        // Десктоп: показываем при наведении, скрываем при уходе
+        card.addEventListener('mouseenter', function() {
+          tooltip.classList.add('active');
+        });
+        card.addEventListener('mouseleave', function() {
+          tooltip.classList.remove('active');
+        });
+      } else {
+        // Мобильные устройства: клик переключает видимость
+        card.addEventListener('click', function(e) {
+          e.stopPropagation(); // чтобы не закрывалось при клике внутрь
+          tooltip.classList.toggle('active');
+        });
+        // Закрываем при клике в любое другое место
+        document.addEventListener('click', function(e) {
+          if (!card.contains(e.target)) {
+            tooltip.classList.remove('active');
+          }
+        });
+      }
     })();
   </script>
 </body>
