@@ -4,18 +4,181 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Навыки | Даниил Сапожков</title>
-  <meta name="description" content="Навыки Даниила Сапожкова: опыт работы, инструменты, ИТ, информационная безопасность, административный опыт и рабочие качества.">
+  <meta name="description" content="Навыки и опыт работы геодезиста Даниила Сапожкова.">
   <link rel="stylesheet" href="css/main.css">
-</head>
 
+  <style>
+    /* ============================================================
+       ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ НАВЫКОВ
+       (поддерживают основной CSS)
+       ============================================================ */
+
+    /* ----- Теги навыков (интерактив) ----- */
+    .tag {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .tag:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(168, 224, 99, 0.30);
+    }
+    .tag:active {
+      transform: scale(0.93);
+    }
+
+    /* ----- Список обязанностей ----- */
+    .experience-item ul li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       УВЕДОМЛЕНИЕ-ЧАТ (всплывает в правом нижнем углу)
+       ============================================================ */
+    .chat-notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 340px;
+      max-width: calc(100% - 40px);
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 14px 44px rgba(0, 0, 0, 0.10);
+      border: 1px solid var(--border);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      font-family: "Manrope", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .chat-notification.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .chat-notification__header {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px;
+      background: var(--accent-soft);
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    .chat-notification__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--white);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .chat-notification__name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--black);
+      flex: 1;
+    }
+
+    .chat-notification__close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .chat-notification__close:hover {
+      transform: scale(1.15);
+      color: var(--text);
+    }
+
+    .chat-notification__body {
+      padding: 16px 18px 18px;
+      background: var(--green-pale);
+    }
+
+    .chat-notification__message {
+      background: var(--white);
+      padding: 14px 18px;
+      border-radius: 14px 14px 14px 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      position: relative;
+      min-height: 56px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-notification__typing {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .chat-notification__typing span {
+      display: inline-block;
+      animation: dotPulse 1.4s infinite;
+    }
+    .chat-notification__typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-notification__typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotPulse {
+      0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    .chat-notification__text {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .chat-notification__text.visible {
+      opacity: 1;
+    }
+
+    .chat-notification__time {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 6px;
+      padding-right: 4px;
+    }
+
+    /* ----- Адаптив для мобильных ----- */
+    @media (max-width: 480px) {
+      .chat-notification {
+        bottom: 12px;
+        right: 12px;
+        width: calc(100% - 24px);
+      }
+      .chat-notification__message {
+        font-size: 14px;
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html">Даниил Сапожков</a>
-
       <nav class="nav__links" aria-label="Основная навигация">
         <a class="nav__link" href="index.html">Главная</a>
-        <a class="nav__link" href="skills.html">Навыки</a>
+        <a class="nav__link is-active" href="skills.html">Навыки</a>
         <a class="nav__link" href="contact.html">Контакты</a>
       </nav>
     </div>
@@ -28,21 +191,21 @@
           <p class="eyebrow">Навыки</p>
           <h1>Опыт работы и профессиональные навыки</h1>
 
-        <p class="skills-intro">
-  Специализируюсь на полевых и камеральных работах, контроле геометрии конструкций,
-  разбивочных работах и подготовке исполнительной документации. 
-  Работаю с тахеометром, нивелиром, GNSS-приёмниками, AutoCAD и CREDO.
-</p>
+          <p class="skills-intro">
+            Специализируюсь на полевых и камеральных работах, контроле геометрии конструкций,
+            разбивочных работах и подготовке исполнительной документации.
+            Работаю с тахеометром, нивелиром, GNSS-приёмниками, AutoCAD и CREDO.
+          </p>
 
-   <div class="experience-list">
+          <div class="experience-list">
             <article class="experience-item">
               <h2>ООО «Накор‑К» — геодезист</h2>
               <p class="meta">2023 — настоящее время, 3 года</p>
               <p class="experience-role">От помощника до ведущего геодезиста</p>
               <p>
-                Начинал карьеру помощником геодезиста: участвовал в полевых измерениях, 
-                готовил исходные данные, работал с тахеометром и нивелиром. 
-                За 3 года освоил все этапы геодезического сопровождения строительства 
+                Начинал карьеру помощником геодезиста: участвовал в полевых измерениях,
+                готовил исходные данные, работал с тахеометром и нивелиром.
+                За 3 года освоил все этапы геодезического сопровождения строительства
                 и дорос до самостоятельного ведения объектов.
               </p>
               <p>
@@ -62,7 +225,7 @@
           </div>
         </div>
 
-     <div class="skills-panel">
+        <div class="skills-panel">
           <p class="section__kicker">Инструменты</p>
           <h2>Геодезическое оборудование и ПО (Hard Skills)</h2>
 
@@ -104,7 +267,7 @@
             <article class="soft-card">
               <h3>Аналитическое мышление</h3>
               <p>
-                Умею анализировать проектные данные, сопоставлять их с фактическими измерениями 
+                Умею анализировать проектные данные, сопоставлять их с фактическими измерениями
                 и быстро находить несоответствия.
               </p>
             </article>
@@ -112,7 +275,7 @@
             <article class="soft-card">
               <h3>Усидчивость</h3>
               <p>
-                Это больше о камеральной обработке, ведь она требует большого терпения и внимания к деталям — 
+                Это больше о камеральной обработке, ведь она требует большого терпения и внимания к деталям —
                 я в свою очередь готов работать с объёмами данных и чертежами.
               </p>
             </article>
@@ -120,7 +283,7 @@
             <article class="soft-card">
               <h3>Коммуникабельность</h3>
               <p>
-                Ежедневно взаимодействую с прорабом, проектировщиками и строителями — 
+                Ежедневно взаимодействую с прорабом, проектировщиками и строителями —
                 коммуникация важна, чтобы в случае необходимости всегда можно было решить любую проблему.
               </p>
             </article>
@@ -139,13 +302,12 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <span>© <span data-current-year></span> Даниил Сапожков</span>
+      <span>© 2026 Даниил Сапожков</span>
       <span>Навыки</span>
     </div>
   </footer>
 
-  <script src="scripts/main.js"></script>
-    <!-- Всплывающие подсказки для навыков -->
+  <!-- Подсказка для навыков (всплывает снизу при клике) -->
   <div id="tooltip" style="
     position: fixed;
     bottom: 30px;
@@ -166,7 +328,35 @@
     text-align: center;
   "></div>
 
+  <!-- Уведомление-чат (в правом нижнем углу) -->
+  <div class="chat-notification" id="chatNotification">
+    <div class="chat-notification__header">
+      <img src="images/ph.jpg" alt="Даниил" class="chat-notification__avatar">
+      <span class="chat-notification__name">Даниил Сапожков</span>
+      <button class="chat-notification__close" id="chatCloseBtn" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="chat-notification__body">
+      <div class="chat-notification__message" id="chatMessage">
+        <div class="chat-notification__typing" id="typingIndicator">
+          <span>●</span><span>●</span><span>●</span>
+        </div>
+        <div class="chat-notification__text" id="chatText">
+          Добрый день! Рад приветствовать вас на моём веб-резюме.<br>
+          Возможно, именно я — тот специалист, который вам нужен.<br>
+          Готов к сотрудничеству и новым задачам.
+        </div>
+      </div>
+      <div class="chat-notification__time" id="chatTime"></div>
+    </div>
+  </div>
+
+  <script src="scripts/main.js"></script>
+
+  <!-- ============================
+       ВЕСЬ JS ДЛЯ СТРАНИЦЫ НАВЫКОВ
+       ============================ -->
   <script>
+    // ----- 1. Подсказки для тегов навыков (клик → описание) -----
     (function() {
       const tags = document.querySelectorAll('.tag');
       const tooltip = document.getElementById('tooltip');
@@ -197,6 +387,38 @@
         }
       });
     })();
+
+    // ----- 2. Управление чат-уведомлением (появление + набор текста) -----
+    (function() {
+      const notification = document.getElementById('chatNotification');
+      const closeBtn = document.getElementById('chatCloseBtn');
+      const typing = document.getElementById('typingIndicator');
+      const text = document.getElementById('chatText');
+      const timeEl = document.getElementById('chatTime');
+
+      // Показываем уведомление через 2 секунды после загрузки
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 2000);
+
+      // Закрытие по крестику
+      closeBtn.addEventListener('click', function() {
+        notification.classList.remove('show');
+      });
+
+      // Текущее время для сообщения
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      timeEl.textContent = `${hours}:${minutes}`;
+
+      // Имитация набора текста (через 4 секунды после появления)
+      setTimeout(() => {
+        typing.style.display = 'none';
+        text.classList.add('visible');
+      }, 4000);
+    })();
   </script>
+
 </body>
 </html>
