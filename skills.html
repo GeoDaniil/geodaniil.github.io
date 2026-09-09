@@ -148,5 +148,58 @@
   </footer>
 
   <script src="scripts/main.js"></script>
+    <!-- Всплывающие подсказки для навыков -->
+  <div id="tooltip" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--accent-dark);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+    max-width: 90%;
+    text-align: center;
+  "></div>
+
+  <script>
+    (function() {
+      const tags = document.querySelectorAll('.tag');
+      const tooltip = document.getElementById('tooltip');
+      let timeoutId = null;
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', function(e) {
+          const desc = this.getAttribute('data-desc');
+          if (!desc) return;
+
+          tooltip.textContent = desc;
+          tooltip.style.opacity = '1';
+          tooltip.style.transform = 'translateX(-50%) translateY(0px)';
+
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            tooltip.style.opacity = '0';
+            tooltip.style.transform = 'translateX(-50%) translateY(20px)';
+          }, 3000);
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('tag')) {
+          tooltip.style.opacity = '0';
+          tooltip.style.transform = 'translateX(-50%) translateY(20px)';
+          clearTimeout(timeoutId);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
