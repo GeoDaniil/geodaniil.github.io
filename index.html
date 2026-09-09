@@ -306,19 +306,7 @@ body {
       background: transparent;
       position: relative;
     }
-    .section--about::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 900px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent-extra), var(--accent), transparent);
-      border-radius: 4px;
-      opacity: 0.3;
-    }
+ 
     .about-grid {
       display: flex;
       flex-direction: column;
@@ -487,11 +475,7 @@ body {
     }
 
     /* ---- Карусель (направления работ) ---- */
-    .section--skills-slider {
-      padding: 60px 0 80px;
-      background: transparent;
-      position: relative;
-    }
+ 
     .section--skills-slider::before {
       content: '';
       position: absolute;
@@ -782,9 +766,7 @@ body {
           <h2 class="section__title">Московский автомобильно-дорожный колледж им. Николаева</h2>
         </div>
         <div class="education-card" id="educationCard">
-          <!-- Тултип -->
           <div class="tooltip" id="educationTooltip">
-            <strong>Почему геодезия?</strong>
             Во время обучения на строительстве дорог и аэродромов изучал основы геодезии. Мне показалось это интересным, и я решил углубиться в профессию. Поработав немного в дорожной сфере, понял, что геодезия — гораздо интереснее.
           </div>
 
