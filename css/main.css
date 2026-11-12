@@ -1737,3 +1737,127 @@ h4 {
     transform: none;
   }
 }
+/* =========================
+   ДЕКОР-ПАКЕТ
+   ========================= */
+
+/* 1. Градиентный h1 в hero */
+.home-summary-card h1 {
+  background: linear-gradient(135deg, var(--black) 0%, var(--accent-dark) 70%, var(--green-medium) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 2. Кастомный скроллбар */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--green-pale); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  border-radius: 10px;
+  border: 2px solid var(--green-pale);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+html { scrollbar-color: var(--accent) var(--green-pale); scrollbar-width: thin; }
+
+/* 3. Анимированное подчёркивание в меню */
+.nav__link { position: relative; }
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 12px; right: 12px; bottom: 4px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-extra));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav__link:hover::after { transform: scaleX(1); }
+.nav__link.is-active::after { transform: scaleX(1); background: var(--accent-dark); }
+
+/* 4. Уголки-видоискатели на hero-фото */
+.home-photo-card { position: relative; }
+.home-photo-card::before,
+.home-photo-card::after {
+  content: "";
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 2px solid var(--accent-dark);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.85;
+  transition: all 0.35s ease;
+}
+.home-photo-card::before {
+  top: 8px; left: 8px;
+  border-right: 0; border-bottom: 0;
+  border-radius: 6px 0 0 0;
+}
+.home-photo-card::after {
+  bottom: 8px; right: 8px;
+  border-left: 0; border-top: 0;
+  border-radius: 0 0 6px 0;
+}
+.home-photo-card:hover::before { top: 4px; left: 4px; }
+.home-photo-card:hover::after  { bottom: 4px; right: 4px; }
+
+/* 5. Таймлайн «Мой путь» */
+.about-grid { position: relative; padding-left: 40px; }
+.about-grid::before {
+  content: "";
+  position: absolute;
+  left: 12px; top: 10px; bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-extra), var(--accent));
+  border-radius: 2px;
+  opacity: 0.4;
+}
+.about-row { position: relative; }
+.about-row::before {
+  content: "";
+  position: absolute;
+  left: -34px; top: 50%;
+  transform: translateY(-50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 4px rgba(168, 224, 99, 0.18);
+  z-index: 2;
+}
+
+/* 6. Счётчики в hero */
+.stats-row {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border);
+}
+.stat { display: flex; flex-direction: column; align-items: flex-start; }
+.stat__num {
+  font-family: "Unbounded", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent-dark), var(--green-medium));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat__suffix { font-size: 14px; font-weight: 700; color: var(--text); margin-left: 2px; }
+.stat__label  { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* Адаптив */
+@media (max-width: 980px) {
+  .about-grid { padding-left: 30px; }
+  .about-row::before { left: -24px; }
+}
+@media (max-width: 768px) {
+  .about-grid { padding-left: 20px; }
+  .about-row::before { left: -14px; width: 12px; height: 12px; }
+  .stats-row { gap: 18px; }
+  .stat__num { font-size: 24px; }
+}
